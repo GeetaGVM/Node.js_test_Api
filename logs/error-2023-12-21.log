@@ -1,0 +1,8 @@
+2023-12-21T06:48:24.822Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'ID'), 
+Request: /forgot-password, 
+Request Params: {}, 
+Request Body: {"NewPassword":"123"}
+2023-12-21T07:36:46.026Z [ERROR]: ReferenceError: sendEmailResetPassword is not defined, 
+Request: /reset-password, 
+Request Params: {}, 
+Request Body: {"email":"geetshah79@gmail.com","password":"1234","resetToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDMxNDQxNzEsImV4cCI6MTcwMzIzMDU3MX0.vRU0glZ2r9UVs0yTKRWT2kTYFIU77y98XiL1y6AzeR4"}

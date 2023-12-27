@@ -1,0 +1,418 @@
+2023-12-18T18:49:31.928Z [ERROR]: ReferenceError: Login_type is not defined, 
+Request: /register, 
+Request Params: {}, 
+Request Body: {"Name":"user1","Email":"geeta@gvmtechnologies.com","Password":"1234","Role":"1"}
+2023-12-18T18:54:17.315Z [ERROR]: Error: WHERE parameter "Email" has invalid "undefined" value, 
+Request: /register, 
+Request Params: {}, 
+Request Body: {}
+2023-12-18T18:58:58.747Z [ERROR]: SequelizeValidationError: notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.isinStock cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"toy","Price":"50","isinStock":"true","Quantity":"5"}
+2023-12-18T18:59:41.780Z [ERROR]: SequelizeValidationError: notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.isinStock cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"toy","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T18:59:54.492Z [ERROR]: SequelizeValidationError: notNull Violation: Product.Description cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"toy","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T19:00:45.090Z [ERROR]: SequelizeDatabaseError: Field 'Description' doesn't have a default value, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"toy","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T19:02:40.352Z [ERROR]: SequelizeDatabaseError: Field 'isinStock' doesn't have a default value, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"toy","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T19:05:02.554Z [ERROR]: SequelizeUniqueConstraintError: Validation error, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"toy","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T19:05:39.661Z [ERROR]: SequelizeUniqueConstraintError: Validation error, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T19:06:27.459Z [ERROR]: SequelizeUniqueConstraintError: Validation error, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T19:07:01.451Z [ERROR]: SequelizeUniqueConstraintError: Validation error, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-18T19:07:28.168Z [ERROR]: SequelizeUniqueConstraintError: Validation error, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T04:46:11.209Z [ERROR]: SequelizeUniqueConstraintError: Validation error, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T04:55:22.562Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T04:58:14.587Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T04:58:49.098Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T04:59:17.208Z [ERROR]: SequelizeDatabaseError: Unknown column 'createdAt' in 'field list', 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy2","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T05:16:47.199Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.Price cannot be null,
+notNull Violation: Product.Quantity cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T05:19:14.348Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.Price cannot be null,
+notNull Violation: Product.Quantity cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"this is best for kids","Price":"50","isinStock":true,"Quantity":"5"}
+2023-12-19T05:22:18.703Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.Price cannot be null,
+notNull Violation: Product.Quantity cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"toy","Description":"this is best for kids","Price":50,"IsInStock":true,"Quantity":5}
+2023-12-19T06:01:46.991Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.Price cannot be null,
+notNull Violation: Product.Quantity cannot be null, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T06:19:58.675Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T06:32:15.766Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T06:42:11.177Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T06:44:11.174Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T06:45:09.700Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T06:51:14.432Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T06:52:09.129Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T06:52:25.290Z [ERROR]: MulterError: Unexpected field, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:00:43.716Z [ERROR]: SequelizeValidationError: string violation: ProductImage cannot be an array or an object, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster5","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:06:25.677Z [ERROR]: SequelizeDatabaseError: Data too long for column 'ProductImage' at row 1, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:07:17.581Z [ERROR]: TypeError: ProductImagefile.map is not a function, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:12:15.273Z [ERROR]: TypeError: ProductImagefile.map is not a function, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:14:19.133Z [ERROR]: TypeError: req.files.map is not a function, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:17:25.235Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:25:36.036Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:35:46.873Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:38:01.323Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:46:12.143Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:49:06.073Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T07:51:00.047Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T08:58:39.353Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T09:02:02.972Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T09:05:58.887Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T09:06:14.185Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T09:07:16.304Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"50"}
+2023-12-19T09:09:19.814Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:09:39.443Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:10:31.566Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:11:19.688Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:12:07.102Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:12:46.622Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:13:00.246Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:13:43.098Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:14:33.441Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:14:41.657Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:16:02.072Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:17:02.239Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:17:18.125Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:19:43.190Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:20:07.062Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:20:36.734Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:21:18.709Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:24:20.754Z [ERROR]: Error: Unexpected end of form, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:31:56.779Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'map'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"games","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"5"}
+2023-12-19T09:32:22.299Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'map'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"games","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"5"}
+2023-12-19T09:34:06.126Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'map'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"games","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"5"}
+2023-12-19T09:35:01.310Z [ERROR]: ReferenceError: productIProductImagefilemages is not defined, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"games","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"5"}
+2023-12-19T09:35:12.280Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'map'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"games","Description":"this is best for kids","Price":"50","IsInStock":"true","Quantity":"5"}
+2023-12-19T09:44:32.656Z [ERROR]: TypeError: Cannot destructure property 'role' of 'req.user' as it is undefined., 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:45:22.939Z [ERROR]: TypeError: Cannot destructure property 'role' of 'req.user' as it is undefined., 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:45:42.895Z [ERROR]: TypeError: Cannot destructure property 'role' of 'req.user' as it is undefined., 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T09:52:15.927Z [ERROR]: TypeError: Cannot destructure property 'role' of 'req.user' as it is undefined., 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T10:38:15.030Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T10:40:22.350Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T10:43:02.683Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T10:44:56.236Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T10:50:19.627Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:02:38.464Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:17:09.788Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:26:15.740Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:27:42.332Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:28:08.718Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:31:11.658Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:40:58.097Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:42:50.227Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:43:39.471Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {"ProductName":"jujutsu poster for kids","Description":"this is best for kids","Price":"3","IsInStock":"false","Quantity":"10"}
+2023-12-19T11:44:56.564Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T11:49:11.823Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T11:49:48.199Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T11:50:27.339Z [ERROR]: Error: Malformed part header, 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T16:19:30.675Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'Productimage'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T16:21:21.343Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'Productimage'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T16:25:10.953Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'Productimage'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T16:25:39.652Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'Productimage'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T16:26:59.164Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'Productimage'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T16:27:51.476Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'Productimage'), 
+Request: /add-product, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T17:16:27.466Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.Price cannot be null,
+notNull Violation: Product.Quantity cannot be null, 
+Request: /update-product/1, 
+Request Params: {}, 
+Request Body: {}
+2023-12-19T17:25:16.612Z [ERROR]: SequelizeValidationError: notNull Violation: Product.ProductName cannot be null,
+notNull Violation: Product.Description cannot be null,
+notNull Violation: Product.Price cannot be null,
+notNull Violation: Product.Quantity cannot be null, 
+Request: /update-product/1, 
+Request Params: {}, 
+Request Body: {}
