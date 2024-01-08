@@ -1,27 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 const generateToken = (user) => {
-  return new Promise((resolve, reject) => {
-    jwt.sign(user, process.env.jwt_secret_key, { expiresIn: '1d' }, (err, token) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(token);
-      }
-    });
-  });
+  return jwt.sign(user, process.env.jwt_secret_key, { expiresIn: '1d' });
 };
 
 const verifyToken = (token) => {
-  return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.jwt_secret_key, (err, decoded) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(decoded);
-      }
-    });
-  });
+  return jwt.verify(token, process.env.jwt_secret_key);
 };
 
 module.exports = { generateToken, verifyToken };

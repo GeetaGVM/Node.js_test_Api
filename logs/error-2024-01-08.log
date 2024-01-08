@@ -1,0 +1,8 @@
+2024-01-08T05:25:14.067Z [ERROR]: SequelizeValidationError: string violation: AccessToken cannot be an array or an object, 
+Request: /register, 
+Request Params: {}, 
+Request Body: {"Name":"daksh","Email":"daksh@gmail.com","Country_code":"+91","Phone":"12345670","Password":"1234","Login_type":"1","Role":"0"}
+2024-01-08T05:28:30.899Z [ERROR]: SequelizeValidationError: string violation: AccessToken cannot be an array or an object, 
+Request: /register, 
+Request Params: {}, 
+Request Body: {"Name":"daksh1","Email":"daksh1@gmail.com","Country_code":"+91","Phone":"1230987451","Password":"12345","Login_type":"1","Role":"0"}

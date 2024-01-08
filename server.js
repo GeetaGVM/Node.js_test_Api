@@ -6,7 +6,7 @@ const productRoutes = require('./routes/productRoute');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json'); 
-const authenticate = require('./middleware/authenticate')
+
 require('./dbconfig/db')
 const { dashLogger } = require("./utils/logger");
 

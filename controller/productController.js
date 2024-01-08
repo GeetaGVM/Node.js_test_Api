@@ -4,12 +4,11 @@ const messages = require('../utils/message');
 const { ProductMedia } = require('../dbconfig/productMedia');
 
 
-// add product
+//add product
 const createProduct = async (req, res, next) => {
+  const { ProductName, Description, Price, IsInStock, Quantity } = req.body;
   try {
   
-    const { ProductName, Description, Price, IsInStock, Quantity } = req.body;
-
     if (!ProductName || !Description || !Price || !IsInStock || !Quantity || !req.files) {
       return res.status(400).json({ message: messages.error.MISSING_REQUIRED_FIELDS });
     }
@@ -52,6 +51,7 @@ const createProduct = async (req, res, next) => {
     return next(error);
   }
 };
+
 
 
 // update product

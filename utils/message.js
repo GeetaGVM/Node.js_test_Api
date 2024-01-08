@@ -9,7 +9,8 @@ module.exports = {
         PRODUCT_UPDATED:'Product updated successfully',
         PRODUCT_DELETED:'Product deleted successfully',
         PASSWORD_RESET_TOKEN:'Password reset token generated successfully',
-        FORGOT_PASSWORD_OTP_VERIFIED: 'Forgot password OTP verified successfully!'
+        FORGOT_PASSWORD_OTP_VERIFIED: 'Forgot password OTP verified successfully!',
+        OTP_VERIFIED: 'OTP Verified sucessfully'
 
 
     },
