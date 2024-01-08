@@ -18,4 +18,4 @@ router.post('/reset-password', authenticate,resetPassword);
 router.get('/getallusers', authenticate,authorize('admin'),getAllUsers);
 
 
-module.exports = router;
+module.export = {router}

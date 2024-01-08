@@ -8,8 +8,8 @@ const commonFunctions = require('../utils/commonFuction')
 
 
 // register user 
-async function registerUser(req, res, next) {
-  let { Name, Email,Country_code,Phone,Password, Login_type,Role } = req.body;
+const registerUser = async (req, res, next) => {
+  const { Name, Email, Country_code, Phone, Password, Login_type, Role } = req.body;
 
   try {
     const existingUser = await findExistingUser(Login_type, Email, Phone);
@@ -17,12 +17,11 @@ async function registerUser(req, res, next) {
       return res.status(409).json({ message: messages.error.USER_ALREADY_REGISTERED });
     }
 
-    var hashedPassword = "";
+    let hashedPassword = "";
     if (Login_type === commonFunctions.LoginTypeEnum.EMAIL) {
       hashedPassword = await bcrypt.hash(Password, 10);
     }
 
-    // Generate OTP
     const otp = commonFunctions.randomFourDigitCode();
 
     const newUser = {
@@ -37,54 +36,58 @@ async function registerUser(req, res, next) {
     };
 
     const user = await User.create(newUser);
-
-    var AccessToken = "";
+    
     if (Login_type === commonFunctions.LoginTypeEnum.EMAIL) {
-      await sendEmailOTP(Email, otp,Name);
-
+      await sendEmailOTP(Email, otp, Name);
     } else if (Login_type === commonFunctions.LoginTypeEnum.PHONE) {
-      var tempPhone = Country_code + Phone;
-      await sendEmailOTP(Phone, `${otp}`,Name);
+      const tempPhone = `${Country_code}${Phone}`;
+      await sendEmailOTP(tempPhone, `${otp}`, Name);
     }
-  
-    const tempAccessToken = generateToken({
-      id: user.id 
-    });
-    AccessToken = tempAccessToken;
-    user.AccessToken = tempAccessToken;
+
+    const accessToken = generateToken({ id: user.id });
+    user.AccessToken = accessToken;
     await user.save();
 
-    return res.status(200).json({ message: messages.success.USER_REGISTERED, AccessToken, user });
+    return res.status(200).json({ message: messages.success.USER_REGISTERED, AccessToken: accessToken, user });
   } catch (error) {
     console.log(error);
     return next(error);
   }
+};
+
+
+function findExistingUser(loginType, email, phone) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = null;
+      if (loginType === commonFunctions.LoginTypeEnum.EMAIL) {
+        user = await User.findOne({ where: { Email: email } });
+      } else if (loginType === commonFunctions.LoginTypeEnum.PHONE) {
+        user = await User.findOne({ where: { Phone: phone } });
+      }
+      resolve(user);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
-async function findExistingUser(loginType, email, phone) {
-  if (loginType === commonFunctions.LoginTypeEnum.EMAIL) {
-    return await User.findOne({ where: { Email: email } });
-  } else if (loginType === commonFunctions.LoginTypeEnum.PHONE) {
-    return await User.findOne({ where: { Phone: phone } });
-  }
-  return null;
-}
 
 
 // login user with email and password
-async function loginWithPassword(req, res, next) {
-  let { Login_type, Email, Password } = req.body;
+const loginWithPassword = async (req, res, next) => {
+  const { Login_type, Email, Password } = req.body;
   try {
-    let user;
+
+    let user = null;
+
     if (Login_type === commonFunctions.LoginTypeEnum.EMAIL) {
-      
       user = await User.findOne({ where: { Email } });
-      
     }
 
     if (!user) {
       return res.status(401).json({ message: messages.error.USER_NOT_FOUND_OR_REGISTER_FIRST });
-    } 
+    }
 
     if (Login_type === commonFunctions.LoginTypeEnum.EMAIL) {
       const isPasswordMatch = await bcrypt.compare(Password, user.Password);
@@ -93,22 +96,26 @@ async function loginWithPassword(req, res, next) {
       }
     }
 
-    const accessToken = generateToken({id: user.id });
+    const accessToken = generateToken({ id: user.id });
 
     user.AccessToken = accessToken;
     await user.save();
 
-    return res.status(200).json({ message: messages.success.LOGIN_SUCCESS, AccessToken: accessToken, User: user });
+    return res.status(200).json({
+      message: messages.success.LOGIN_SUCCESS,
+      AccessToken: accessToken,
+      User: user
+    });
 
   } catch (error) {
     return next(error);
   }
-}
+};
 
-async function requestLoginOTP(req, res, next) {
+const requestLoginOTP= async (req, res, next) => {
+  const { Login_type, Phone } = req.body;
   try {
-    const { Login_type, Phone } = req.body;
-
+    
     let user;
     if (Login_type === commonFunctions.LoginTypeEnum.PHONE) {
       user = await User.findOne({ where: { Phone } });
@@ -136,11 +143,12 @@ async function requestLoginOTP(req, res, next) {
   }
 }
 
-async function loginWithOTP(req, res, next) {
+const loginWithOTP = async (req, res, next) => {
+  const { Login_type, Phone, OTP } = req.body;
   try {
-    const { Login_type, Phone, OTP } = req.body;
+    
+    let user = null;
 
-    let user;
     if (Login_type === commonFunctions.LoginTypeEnum.PHONE) {
       user = await User.findOne({ where: { Phone } });
     }
@@ -157,146 +165,161 @@ async function loginWithOTP(req, res, next) {
       return res.status(400).json({ message: messages.error.OTP_EXPIRED });
     }
 
-    const accessToken = generateToken({id: user.id });
+    const accessToken = generateToken({ id: user.id });
+    
     user.Otp = "";
     user.Is_otp_verified = true;
     user.Otp_expiration_time = null;
     user.AccessToken = accessToken;
+
     await user.save();
 
-    return res.status(200).json({ message: messages.success.LOGIN_SUCCESS, AccessToken: accessToken, User: user });
+    return res.status(200).json({
+      message: messages.success.LOGIN_SUCCESS,
+      AccessToken: accessToken,
+      User: user
+    });
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
 // Resend OTP
-async function resendOTP(req, res, next) {
+const resendOTP = async (req, res, next) => {
   try {
     const { Login_type } = req.body;
+    let result;
 
     if (Login_type === commonFunctions.LoginTypeEnum.PHONE) {
-      return await resendPhoneOTP(req, res);
+      result = await resendPhoneOTP(req, res);
     } else if (Login_type === commonFunctions.LoginTypeEnum.EMAIL) {
-      return await resendEmailOTP(req, res);
+      result = await resendEmailOTP(req, res);
     } else {
       return res.status(400).json({ message: messages.error.INVALID_REQUEST_TYPE });
     }
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
-async function resendPhoneOTP(req, res) {
+
+const resendPhoneOTP = async (req, res) => {
   const { Phone } = req.body;
-  const code = commonFunctions.randomFourDigitCode();
-  const user = await User.findOne({ where: { Phone } });
+  try { 
+    const code = commonFunctions.randomFourDigitCode();
+    const user = await User.findOne({ where: { Phone } });
 
-  if (!user) {
-    return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
+    if (!user) {
+      return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
+    }
+
+    user.Otp = code;
+    user.Is_verified = false;
+    await user.save();
+
+    await sendEmailOTP(Phone, `${code}`);
+
+    return res.status(200).json({ message: messages.success.OTP_SEND, ID: user.ID });
+
+  } catch (error) {
+    
+    return res.status(500).json({ message: messages.error.INTERNAL_SERVER_ERROR });
   }
+};
 
-  user.Otp = code;
-  user.Is_verified = false;
-  await user.save();
+const resendEmailOTP = async (req, res) => {
+  try {
 
-  await sendEmailOTP(Phone, `${code}`);
+    const { Email } = req.body;
+    const code = commonFunctions.randomFourDigitCode();
+    const user = await User.findOne({ where: { Email } });
 
-  return res.status(200).json({ message: messages.success.OTP_SEND, ID: user.ID });
-}
+    if (!user) {
+      return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
+    }
 
-async function resendEmailOTP(req, res) {
-  const { Email } = req.body;
-  const code = commonFunctions.randomFourDigitCode();
-  const user = await User.findOne({ where: { Email } });
+    user.Otp = code;
+    user.Is_verified = false;
+    await user.save();
 
-  if (!user) {
-    return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
+    await sendEmailOTP(Email, code);
+
+    return res.status(200).json({ message: messages.success.OTP_SEND, ID: user.ID });
+
+  } catch (error) {
+    return res.status(500).json({ message: messages.error.INTERNAL_SERVER_ERROR });
   }
-
-  user.Otp = code;
-  user.Is_verified = false;
-  await user.save();
-
-  await sendEmailOTP(Email, code);
-
-  return res.status(200).json({ message: messages.success.OTP_SEND, ID: user.ID });
-}
+};
 
 // Verify sent OTP using User ID
-async function verifyOTP(req, res, next) {
+const verifyOTP = async (req, res, next) => {
   const { ID, Otp } = req.body;
-
   try {
-    // Check if user exists
+    
     const user = await User.findByPk(ID);
+
     if (!user) {
       return res.status(404).json({ message: messages.error.USER_NOT_FOUND });
     }
 
-    // Check if OTP is valid
     if (user.Otp !== Otp) {
       return res.status(400).json({ message: messages.error.OTP_MISMATCH });
     }
 
-    // Update user record with consent given
     user.Is_verified = true;
     await user.save();
 
     return res.status(200).json({ message: messages.success.OTP_VERIFIED, user: user });
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
 // Verify forget password OTP
-async function verifyForgotPasswordOTP(req, res, next) {
+const verifyForgotPasswordOTP = async (req, res, next) => {
+  const { Login_type, Phone, Email, Otp } = req.body;
   try {
-    const { Login_type, Phone, Email, Otp } = req.body;
     let user;
-    if (Login_type == commonFunctions.LoginTypeEnum.PHONE) {
 
+    if (Login_type === commonFunctions.LoginTypeEnum.PHONE) {
       user = await User.findOne({ where: { Phone } });
-      if (!user) {
-        return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
-      }
-
-    } else if (Login_type == commonFunctions.LoginTypeEnum.EMAIL) {
-
+    } else if (Login_type === commonFunctions.LoginTypeEnum.EMAIL) {
       user = await User.findOne({ where: { Email } });
-      if (!user) {
-        return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
-      }
     }
 
-    // Check if OTP is valid
+    if (!user) {
+      return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
+    }
+
     if (user.Otp !== Otp) {
       return res.status(400).json({ message: messages.error.OTP_MISMATCH });
     }
 
-    // Generate access token
-    const accessToken = generateToken({id: user.id });
+    const accessToken = generateToken({ id: user.id });
     user.AccessToken = accessToken;
-    // Update user record with consent given
     user.Is_verified = true;
     await user.save();
 
     return res.status(200).json({ message: messages.success.FORGOT_PASSWORD_OTP_VERIFIED, accessToken });
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
 
 // get all user with pagination
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res, next) => {
   try {
     const { page = 1, limit, search = '' } = req.query;
-
     const offset = (page - 1) * (limit ? parseInt(limit, 10) : 0);
 
+
     const options = {
-      attributes: { exclude: ['Created_at', 'Created_by','Updated_at','Updated_by'] },
+      attributes: { exclude: ['Created_at', 'Created_by', 'Updated_at', 'Updated_by'] },
       offset,
       limit: limit ? parseInt(limit, 10) : null,
     };
@@ -315,68 +338,74 @@ const getAllUsers = async (req, res) => {
     const currentPage = parseInt(page, 10);
 
     return res.status(200).json({ users, totalPages, currentPage, totalRecords: count });
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
 
-async function forgotPassword(req, res, next) {
+// forgot password
+const forgotPassword = async (req, res, next) => {
+  const { NewPassword } = req.body;
   try {
+    
+    const hashedPassword = await bcrypt.hash(NewPassword, 10);
 
-    const { NewPassword } = req.body;
-    var hashedPassword = await bcrypt.hash(NewPassword, 10);
-    // Remove user's access token from database
     const user = await User.findOne({ where: { ID: req.user.ID } });
     user.Password = hashedPassword;
     user.AccessToken = "";
     await user.save();
-
     return res.status(200).json({ message: messages.success.PASSWORD_CHANGED });
+
   } catch (error) {
     return next(error);
   }
-}
+};
+
 
 // reset password
-async function resetPassword(req, res, next) {
+const resetPassword = async (req, res, next) => {
+  const { OldPassword, NewPassword } = req.body;
   try {
-    const { OldPassword, NewPassword } = req.body;
-
-    // Remove user's access token from database
+ 
     const user = await User.findOne({ where: { ID: req.user.ID } });
+
     if (!user) {
       return res.status(400).json({ message: messages.error.USER_NOT_FOUND });
     }
 
-    var isMatch = await bcrypt.compare(OldPassword, user.Password);
+    const isMatch = await bcrypt.compare(OldPassword, user.Password);
     if (!isMatch) {
       return res.status(400).json({ message: messages.error.INVALID_OLD_PASSWORD });
     }
 
-    var hashedPassword = await bcrypt.hash(NewPassword, 10);
+    const hashedPassword = await bcrypt.hash(NewPassword, 10);
     user.Password = hashedPassword;
     user.AccessToken = "";
-    await user.save();
 
+    await user.save();
     return res.status(200).json({ message: messages.success.PASSWORD_CHANGED });
+
   } catch (error) {
     return next(error);
   }
-}
+};
+
 
 
 // logout 
-async function logout(req, res, next) {
-    try {
-      const user = await User.findOne({ where: { ID: req.user.ID } });
-      user.AccessToken = "";
-      await user.save();
-      return res.status(200).json({ message: messages.success.LOGGED_OUT });
-    } catch (error) {
-      return next(error);
-    }
+const logout = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ where: { ID: req.user.ID } });
+    user.AccessToken = "";
+    await user.save();
+
+    return res.status(200).json({ message: messages.success.LOGGED_OUT });
+  } catch (error) {
+    return next(error);
   }
+};
 
   
 

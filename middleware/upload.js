@@ -23,4 +23,6 @@ const uploadProductMedia = multer({ storage: storage,limits: {fileSize: 1024 * 1
     { name: 'Productimage', maxCount: 1 },
     { name: 'Extraimages', maxCount: 10 }
   ]);
+
+  
 module.exports = {uploadProductMedia}

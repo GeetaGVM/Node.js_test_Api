@@ -5,16 +5,17 @@ const { ProductMedia } = require('../dbconfig/productMedia');
 
 
 // add product
-async function createProduct(req, res, next) {
+const createProduct = async (req, res, next) => {
   try {
-    const productImages = req.files && req.files['Productimage'];
-    const extraImages = req.files && req.files['Extraimages'];
-
+  
     const { ProductName, Description, Price, IsInStock, Quantity } = req.body;
 
-    if (!ProductName || !Description || !Price || !IsInStock || !Quantity || !productImages || !extraImages) {
-      return res.status(400).json({ message : messages.error.MISSING_REQUIRED_FIELDS });
+    if (!ProductName || !Description || !Price || !IsInStock || !Quantity || !req.files) {
+      return res.status(400).json({ message: messages.error.MISSING_REQUIRED_FIELDS });
     }
+
+    const productImages = req.files['Productimage'];
+    const extraImages = req.files['Extraimages'];
 
     const mainImagePaths = productImages.map((image) => image.path);
     const extraImagePaths = extraImages.map((image) => image.path);
@@ -32,7 +33,7 @@ async function createProduct(req, res, next) {
         await ProductMedia.create({
           ProductID: newProduct.ID,
           ImagePath: imagePath,
-          Is_Main_Image: isMainImage
+          Is_Main_Image: isMainImage,
         });
       }
     };
@@ -42,24 +43,25 @@ async function createProduct(req, res, next) {
 
     const productWithMedia = {
       ...newProduct.toJSON(),
-      ProductMedia: await ProductMedia.findAll({ where: { ProductID: newProduct.ID } })
+      ProductMedia: await ProductMedia.findAll({ where: { ProductID: newProduct.ID } }),
     };
 
     return res.status(201).json({ message: messages.success.PRODUCT_CREATED, Product: productWithMedia });
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
 
 // update product
-async function updateProduct(req, res, next) {
-  let productId = req.params.id; 
-  let  { ProductName, Description, Price, IsInStock, Quantity } = req.body;
+const updateProduct = async (req, res, next) => {
+  const productId = req.params.id;
+  const { ProductName, Description, Price, IsInStock, Quantity } = req.body;
   const productImages = req.files && req.files['Productimage'];
   const extraImages = req.files && req.files['Extraimages'];
+
   try {
-    
     let product = await Product.findByPk(productId);
 
     if (!product) {
@@ -69,12 +71,12 @@ async function updateProduct(req, res, next) {
     if (ProductName) product.ProductName = ProductName;
     if (Description) product.Description = Description;
     if (Price) product.Price = Price;
-    if (IsInStock) product.IsInStock = IsInStock;
+    if (IsInStock !== undefined) product.IsInStock = IsInStock;
     if (Quantity) product.Quantity = Quantity;
+
     await product.save();
 
     if (productImages || extraImages) {
-
       await ProductMedia.destroy({ where: { ProductID: productId } });
 
       const mainImagePaths = productImages ? productImages.map((image) => image.path) : [];
@@ -85,7 +87,7 @@ async function updateProduct(req, res, next) {
           await ProductMedia.create({
             ProductID: productId,
             ImagePath: imagePath,
-            Is_Main_Image: isMainImage
+            Is_Main_Image: isMainImage,
           });
         }
       };
@@ -96,22 +98,23 @@ async function updateProduct(req, res, next) {
 
     const productWithMedia = {
       ...product.toJSON(),
-      ProductMedia: await ProductMedia.findAll({ where: { ProductID: productId } })
+      ProductMedia: await ProductMedia.findAll({ where: { ProductID: productId } }),
     };
 
     return res.status(200).json({ message: messages.success.PRODUCT_UPDATED, Product: productWithMedia });
+
   } catch (error) {
     return next(error);
   }
-}
+};
+
+
 
 // get all product with pagination
-async function getAllProducts(req, res, next) {
+const getAllProducts = async (req, res, next) => {
   try {
     const { page = 1, limit, search = '' } = req.query;
-
     const offset = (page - 1) * (limit ? parseInt(limit, 10) : 0);
-
     const options = {
       attributes: { exclude: ['CreatedAt', 'UpdatedAt'] },
       offset,
@@ -130,9 +133,9 @@ async function getAllProducts(req, res, next) {
     const { count, rows: products } = await Product.findAndCountAll(options);
 
     for (const product of products) {
-      const productMedia = await ProductMedia.findAll({ 
-        where: { ProductID: product.ID }, 
-        attributes: ['ImagePath', 'Is_Main_Image'] 
+      const productMedia = await ProductMedia.findAll({
+        where: { ProductID: product.ID },
+        attributes: ['ImagePath', 'Is_Main_Image'],
       });
 
       product.dataValues.ProductMedia = productMedia.length > 0 ? productMedia : null;
@@ -142,41 +145,44 @@ async function getAllProducts(req, res, next) {
     const currentPage = parseInt(page, 10);
 
     return res.status(200).json({ products, totalPages, currentPage, totalRecords: count });
+
   } catch (error) {
     return next(error);
   }
-}
+};
+
 
 // get product by id
-async function getProductById(req, res, next) {
-  const { id } = req.params;
-
+const getProductById = async (req, res, next) => {
   try {
+    const { id } = req.params;
     const product = await Product.findByPk(id, {
-      attributes: { exclude: ['CreatedAt', 'UpdatedAt'] }
+      attributes: { exclude: ['CreatedAt', 'UpdatedAt'] },
     });
 
     if (!product) {
       return res.status(404).json({ message: messages.error.PRODUCT_NOT_FOUND });
     }
-    const productMedia = await ProductMedia.findAll({ 
+
+    const productMedia = await ProductMedia.findAll({
       where: { ProductID: id },
-      attributes: ['ImagePath', 'Is_Main_Image'] 
+      attributes: ['ImagePath', 'Is_Main_Image'],
     });
-    
 
     product.dataValues.ProductMedia = productMedia.length > 0 ? productMedia : null;
+
     return res.status(200).json(product);
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
 
-async function deleteProduct(req, res, next) {
-  const { id } = req.params;
-
+// Delete Product
+const deleteProduct = async (req, res, next) => {
   try {
+    const { id } = req.params;
     const product = await Product.findByPk(id);
 
     if (!product) {
@@ -184,11 +190,13 @@ async function deleteProduct(req, res, next) {
     }
 
     await product.destroy();
+
     return res.status(200).json({ message: messages.success.PRODUCT_DELETED });
+
   } catch (error) {
     return next(error);
   }
-}
+};
 
 module.exports = {
   createProduct,

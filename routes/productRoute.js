@@ -18,3 +18,4 @@ router.get('/getallproduct', getAllProducts);
 router.get('/getproduct/:id', getProductById);
 
 module.exports = router;
+
