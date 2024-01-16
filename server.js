@@ -3,6 +3,7 @@ require('dotenv').config()
 const port = process.env.PORT || 3000
 const Routes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoute');
+const notificationRoutes = require('./routes/notificationRoutes')
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json'); 
@@ -20,7 +21,7 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/', Routes);
 app.use('/',productRoutes);
-
+app.use('/', notificationRoutes);
 
 
 // Handle undefined routes
