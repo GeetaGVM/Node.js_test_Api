@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 const sequelize =require('./db')
-const Cart = require('./cart')
+const Cart = require('./Cart')
 
 
 

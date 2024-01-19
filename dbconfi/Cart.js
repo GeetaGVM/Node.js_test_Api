@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
-const User = require('./user');
+const User = require('./User');
 
 
 const Cart = sequelize.define('Cart', {
@@ -34,7 +34,7 @@ const Cart = sequelize.define('Cart', {
 });
 
 
-User.hasMany(Cart, { foreignKey: 'UserID', as: 'carts' });
+User.hasMany(Cart, { foreignKey: 'UserID' });
 Cart.belongsTo(User);
 
 
