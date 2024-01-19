@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
+const CartItem = require('./cartitem');
+const Cart = require('./cart')
 
 const Product = sequelize.define('Product', {
   ID: {
@@ -44,12 +46,13 @@ const Product = sequelize.define('Product', {
   timestamps: false
 });
 
-sequelize.sync()
-  .then(() => {
-    console.log('Product table created successfully!');
-  })
-  .catch((error) => {
-    console.error('Unable to create table: ', error);
-  });
+
+
+// sequelize.sync().then(() => {
+//   console.log('tables created successfully!');
+// }).catch((error) => {
+//   console.error('Unable to create table : ', error);
+// });
+
 
 module.exports = Product;

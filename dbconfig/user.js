@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 
 const sequelize =require('./db')
+const Cart = require('./cart')
+
+
 
 const User = sequelize.define('User', {
   ID: {
@@ -73,10 +76,12 @@ const User = sequelize.define('User', {
 });
 
 
-sequelize.sync().then(() => {
-  console.log('tables created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table : ', error);
-});
+
+
+// sequelize.sync().then(() => {
+//   console.log('tables created successfully!');
+// }).catch((error) => {
+//   console.error('Unable to create table : ', error);
+// });
 
 module.exports = User;
