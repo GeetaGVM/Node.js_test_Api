@@ -1,8 +1,8 @@
 // orderController.js
 const Order = require('../dbconfig/order');
-const Cart = require('../dbconfig/cart');
-const Product = require('../dbconfig/product');
-const User = require('../dbconfig/user');
+const Cart = require('../dbconfig/Cart');
+const Product = require('../dbconfig/Product');
+const User = require('../dbconfig/User');
 const messages = require('../utils/message');
 
 

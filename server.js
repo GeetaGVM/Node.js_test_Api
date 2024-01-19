@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000
 const Routes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoute');
 const notificationRoutes = require('./routes/notificationRoutes')
-
+const sequelize = require('./dbconfig/db')
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json'); 
 
@@ -37,8 +37,15 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(port,()=>{
-   console.log('server starts on localhost 3000')
-
-})
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('Sequelize models synced with the database');
+    // Start the server after syncing
+    app.listen(port, () => {
+      console.log(`Server starts on localhost ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Error syncing Sequelize models:', error);
+  });
 

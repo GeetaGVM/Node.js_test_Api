@@ -1,6 +1,6 @@
 const { CartItem } = require('../dbconfig/cartitem');
-const {Cart} = require('../dbconfig/cart');
-const {Product} = require('../dbconfig/product')
+const {Cart} = require('../dbconfig/Cart');
+const {Product} = require('../dbconfig/Product')
 
 const addToCart = async (userId, productId, quantity) => {
   try {
