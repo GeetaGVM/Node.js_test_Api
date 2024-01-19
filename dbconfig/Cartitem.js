@@ -10,11 +10,11 @@ const CartItem = sequelize.define('CartItem', {
     autoIncrement: true,
     primaryKey: true
   },
-  CartId: {
+  CartID: {
     type: DataTypes.BIGINT.UNSIGNED,
     allowNull: false,
   },
-  ProductId: {
+  ProductID: {
     type: DataTypes.BIGINT.UNSIGNED,
     allowNull: false,
     references: {
@@ -41,10 +41,10 @@ const CartItem = sequelize.define('CartItem', {
   timestamps: false
 });
 
-Cart.hasMany(CartItem, { foreignKey: 'CartId', onDelete: 'CASCADE' });
+Cart.hasMany(CartItem, { foreignKey: 'CartID', onDelete: 'CASCADE' });
 CartItem.belongsTo(Cart);
 
-Product.hasMany(CartItem, { foreignKey: 'ProductId', as: 'cartItem' });
+Product.hasMany(CartItem, { foreignKey: 'ProductID', as: 'cartItem' });
 CartItem.belongsTo(Product);
 
 module.exports = CartItem;

@@ -10,7 +10,7 @@ const Cart = sequelize.define('Cart', {
     autoIncrement: true,
     primaryKey: true,
   },
-  UserId: {
+  UserID: {
     type: DataTypes.BIGINT.UNSIGNED,
     allowNull: false,
     references: {

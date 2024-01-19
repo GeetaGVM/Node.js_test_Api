@@ -10,7 +10,7 @@ const Order = sequelize.define('Order', {
     autoIncrement: true,
     primaryKey: true
   },
-  UserId: {
+  UserID: {
     type: DataTypes.BIGINT.UNSIGNED,
     allowNull: false,
     references: {
@@ -65,7 +65,7 @@ const Order = sequelize.define('Order', {
 });
 
 
-User.hasMany(Order, { foreignKey: 'UserId', as: 'orders' });
+User.hasMany(Order, { foreignKey: 'UserID', as: 'orders' });
 Order.belongsTo(User);
 
 // sequelize.sync().then(() => {
