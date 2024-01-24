@@ -34,15 +34,5 @@ const Cart = sequelize.define('Cart', {
 });
 
 
-User.hasMany(Cart, { foreignKey: 'UserID' });
-Cart.belongsTo(User);
-
-
-// sequelize.sync().then(() => {
-//   console.log('order tables created successfully!');
-// }).catch((error) => {
-//   console.error('Unable to create table : ', error);
-// });
-
 module.exports = Cart;
 

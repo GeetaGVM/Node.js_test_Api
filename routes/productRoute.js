@@ -10,8 +10,7 @@ const {
   deleteProduct
 } = require('../controller/productController');
 const {uploadProductMedia} = require('../middleware/upload');
-const {addToCart} = require('../controller/cartController')
-const {placeOrder} = require('../controller/OrderController')
+
 
 
 
@@ -21,8 +20,7 @@ router.put('/update-product/:id',uploadProductMedia, authenticate,authorize(['ad
 router.delete('/delete-product/:id',authenticate,authorize(['admin']), deleteProduct);
 router.get('/getallproduct', getAllProducts);
 router.get('/getproduct/:id', getProductById);
-router.post('/cart/add',addToCart);
-router.post('/place-order',placeOrder)
+
 
 module.exports = router;
 

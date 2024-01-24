@@ -1,229 +1,187 @@
-// orderController.js
-const Order = require('../dbconfig/order');
+const Order = require('../dbconfig/Order');
 const Cart = require('../dbconfig/Cart');
 const Product = require('../dbconfig/Product');
 const User = require('../dbconfig/User');
 const messages = require('../utils/message');
+const CartItem = require('../dbconfig/Cartitem');
+const sequelize = require('../dbconfig/db'); 
+const { Op } = require('sequelize');
 
 
-const placeOrder = async (req, res) => {
-  try {
-    const { userId, shippingAddress, billingAddress } = req.body;
 
-    if (!userId || !shippingAddress || !billingAddress) {
-      return res.status(400).json({ error: 'Invalid input data' });
+const placeOrder = async (req, res, next) => {
+    try {
+      const { UserID, ShippingAddress, BillingAddress } = req.body;
+  
+      // Find the user's cart and associated cart items
+      const cart = await Cart.findOne({
+        where: { UserID },
+        include: [{ model: CartItem, include: [Product] }],
+      });
+  
+      if (!cart) {
+        return res.status(404).json({ message : messages.error.CART_NOT_FOUND });
+      }
+  
+      // Calculate the total amount from cart items
+      const GrandTotal = cart.CartItems.reduce((total, cartItem) => total + parseFloat(cartItem.TotalAmount), 0);
+      const totalItems = cart.CartItems.reduce((total, cartItem) => total + cartItem.Quantity, 0);
+
+      // Create an order record
+      const order = await Order.create({
+        UserID,
+        GrandTotal,
+        ShippingAddress,
+        BillingAddress,
+        Status: 'pending',
+        PaymentStatus: 'pending',
+        TotalItems: totalItems
+
+      });
+  
+      // Update product quantities, associate cart items with the order
+      await Promise.all(
+        cart.CartItems.map(async (cartItem) => {
+          const product = await Product.findByPk(cartItem.ProductID, {
+          });
+  
+          if (product) {
+  
+            const product = cartItem.Product;
+            product.Quantity -= cartItem.Quantity;
+            await product.save();
+            // Associate the cart item with the order
+            await cartItem.update({ OrderID: order.ID });
+  
+            // Include modified product details in the response
+            cartItem.dataValues.Product = product;
+          }
+        })
+      );
+  
+      await CartItem.destroy({
+        where: { CartID: cart.ID },
+      });
+  
+      await Cart.destroy({
+        where: { UserID },
+      });
+  
+      res.status(200).json({ message: messages.success.ORDER_SUCCESS, orderdetails: { order, products: cart.CartItems } });
+    } catch (error) {
+      return next(error);
     }
+  };
+  
 
-    const cartItems = await Cart.findAll({
-      where: { UserId: userId },
-      include: [{ model: Product }],
-    });
-
-    if (!cartItems || cartItems.length === 0) {
-      return res.status(400).json({ error: 'Cart is empty. Add items to the cart first.' });
+const getAllOrders = async (req, res, next) => {
+    try {
+      const orders = await Order.findAll({
+        include: [
+            { model: User, attributes: ['ID', 'Name', 'Email'] },
+          ],
+      });
+      
+      res.status(200).json({ orders });
+    } catch (error) {
+      return next(error);
     }
-
-    const totalPrice = cartItems.reduce((sum, cartItem) => sum + cartItem.Product.Price * cartItem.Quantity, 0);
-
-
-    const order = await Order.create({
-      UserId: userId,
-      TotalPrice: totalPrice,
-      Status: 'Pending', // Default status
-      ShippingAddress: shippingAddress,
-      BillingAddress: billingAddress,
-    });
-
-
-    await Promise.all(cartItems.map(async (cartItem) => {
-      const product = cartItem.Product;
-      product.Quantity -= cartItem.Quantity;
-      await product.save();
-      await cartItem.destroy();
-    }));
-
-    res.json({ message: 'Order placed successfully', orderId: order.ID, totalPrice: order.TotalPrice, status: order.Status });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-module.exports = {
-  placeOrder,
-};
+  };
+  
+const updateOrderStatus = async (req, res,next) => {
+    try {
+     
+      const { orderID } = req.body;
+      const { status } = req.body;
+  
+      const order = await Order.findByPk(orderID, {
+        include: [{ model: User, attributes: ['ID', 'Name', 'Email'] }],
+      });
+  
+      if (!order) {
+        return res.status(404).json({ message: messages.error.ORDER_NOT_FOUND });
+      }
+  
+      order.Status = status;
+      await order.save();
+  
+      res.status(200).json({ message: messages.success.ORDER_STATUS_UPDATED, order });
+    } catch (error) {
+     return next(error);
+    }
+  };
 
 
 
-// const placeOrder = async (req, res) => {
-//   try {
-//     const { userId, shippingAddress, billingAddress } = req.body;
-
-//     // Input validation
-//     if (!userId || !shippingAddress || !billingAddress) {
-//       return res.status(400).json({ error: 'Invalid input data' });
-//     }
-
-//     const user = await User.findByPk(userId);
-
-//     if (!user) {
-//       return res.status(404).json({ error: 'User not found' });
-//     }
-
-//     const cartItems = await Cart.findAll({
-//       where: { UserId: userId },
-//       include: Product, // Include the associated Product model
-//     });
-
-//     if (cartItems.length === 0) {
-//       return res.status(400).json({ error: 'Cart is empty. Add items before placing an order.' });
-//     }
-
-//     // Calculate total price based on cart items
-//     const totalPrice = cartItems.reduce((total, cartItem) => {
-//       return total + cartItem.quantity * cartItem.Product.price;
-//     }, 0);
-
-//     // Create an order
-//     const order = await Order.create({
-//       UserId: userId,
-//       shippingAddress,
-//       billingAddress,
-//       totalAmount: totalPrice,
-//       status: 'Pending', // Initial order status
-//     });
-
-//     // Add cart items to the order
-//     await Promise.all(cartItems.map(async (cartItem) => {
-//       await order.addProduct(cartItem.Product, { through: { quantity: cartItem.quantity } });
-//     }));
-
-//     // Clear the user's cart
-//     // await Cart.destroy({ where: { UserId: userId } });
-
-//     res.json({ message: 'Order placed successfully', orderId: order.id });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// };
-
-
-// // Place a new order (for users)
-// // const placeOrder = async (req, res) => {
-// //   try {
-// //     const { userId,shippingAddress, billingAddress } = req.body;
-
-// //     const user = await User.findByPk(userId);
+const getCustomerOrderReport = async (req, res, next) => {
+    try {
+      const { page = 1, pageSize = 10, searchTerm, startDate, endDate,Status } = req.body;
     
-// //     const cartItems = await Cart.findAll({
-// //       where: { UserId: userId },
-// //       include: [{ model: Product}],
-// //     });
+      const offset = (page - 1) * pageSize;
+      const limit = parseInt(pageSize);
+  
+      const whereConditions = {};
+      if (searchTerm) {
+        whereConditions[Op.or] = [
+          { '$User.Name$': { [Op.like]: `%${searchTerm}%` } },
+          { '$User.Email$': { [Op.like]: `%${searchTerm}%` } },
+        ];
+      }
+      if (startDate && endDate) {
+        whereConditions.CreatedAt = {
+          [Op.between]: [new Date(startDate), new Date(endDate)],
+        };
+      }
 
-// //     if (cartItems.length === 0) {
-// //       return res.status(400).json({ message: messages.error.CART_EMPTY });
-// //     }
+      if (Status) {
+        whereConditions.Status = { [Op.eq]: Status };
+      } 
+          
+      const orders = await Order.findAndCountAll({
+        attributes: [
+          'UserID',
+          'Status',
+          [sequelize.fn('COUNT', sequelize.col('Order.ID')), 'TotalOrders'],
+          [sequelize.fn('SUM', sequelize.col('Order.GrandTotal')), 'TotalAmount'],
+          [sequelize.fn('SUM', sequelize.col('Order.TotalItems')), 'TotalItems'], // Assuming TotalItems is a field in the Order model
 
-// //     const orderTotal = cartItems.reduce((total, cartItem) => {
-// //       return total + (cartItem.Product.Price * cartItem.Quantity);
-// //     }, 0);
-
-// //     const newOrder = await Order.create({
-// //       UserId: user,
-// //       ShippingAddress: shippingAddress,
-// //       BillingAddress: billingAddress,
-// //       Total: orderTotal,
-// //       Status: 'placed', // You can set the initial status as 'pending'
-// //       Products: cartItems.map(cartItem => ({
-// //         ProductId: cartItem.Product.ID,
-// //         Quantity: cartItem.Quantity,
-// //         UnitPrice: cartItem.Product.Price,
-// //       })),
-// //     }, {
-// //       include: [{ association: Order.Products }],
-// //     });
-
-// //     // // Clear the user's cart after placing the order
-// //     // await Cart.destroy({ where: { UserId: userId } });
-
-// //     res.status(201).json({ message: messages.success.ORDER_PLACED, order: newOrder });
-// //   } catch (error) {
-// //     console.error(error);
-// //     res.status(500).json({ error: messages.SERVER_ERROR });
-// //   }
-// // };
-
-
-// // // Get all orders (for admin)
-// // exports.getAllOrders = async (req, res) => {
-// //   try {
-// //     // Ensure the user is an admin before allowing access to all orders
-// //     if (req.user.Role !== 'admin') {
-// //       return res.status(403).json({ message: messages.error.UNAUTHORIZED_ACCESS });
-// //     }
-
-// //     const orders = await Order.findAll({
-// //       include: [
-// //         { model: User, attributes: ['ID', 'Name', 'Email'] },
-// //         { model: Product, attributes: ['ID', 'ProductName', 'Price'] },
-// //       ],
-// //     });
-
-// //     res.status(200).json({ orders });
-// //   } catch (error) {
-// //     console.error(error);
-// //     res.status(500).json({ error: messages.SERVER_ERROR });
-// //   }
-// // };
-
-// // // Update order status (for admin)
-// // exports.updateOrderStatus = async (req, res) => {
-// //   try {
-// //     // Ensure the user is an admin before allowing order status update
-// //     if (req.user.Role !== 'admin') {
-// //       return res.status(403).json({ message: messages.error.UNAUTHORIZED_ACCESS });
-// //     }
-
-// //     const orderId = req.params.orderId;
-// //     const { status } = req.body;
-
-// //     const order = await Order.findByPk(orderId, {
-// //       include: [{ model: User, attributes: ['ID', 'Name', 'Email'] }],
-// //     });
-
-// //     if (!order) {
-// //       return res.status(404).json({ message: messages.error.ORDER_NOT_FOUND });
-// //     }
-
-// //     order.Status = status;
-// //     await order.save();
-
-// //     res.status(200).json({ message: messages.success.ORDER_STATUS_UPDATED, order });
-// //   } catch (error) {
-// //     console.error(error);
-// //     res.status(500).json({ error: messages.SERVER_ERROR });
-// //   }
-// // };
-
-// // // View report of orders, users, and products
-// // exports.viewReport = async (req, res) => {
-// //   try {
-// //     // Ensure the user is an admin before allowing access to reports
-// //     if (req.user.Role !== 'admin') {
-// //       return res.status(403).json({ message: messages.error.UNAUTHORIZED_ACCESS });
-// //     }
-
-// //     const orders = await Order.findAll();
-// //     const users = await User.findAll();
-// //     const products = await Product.findAll();
-
-// //     res.status(200).json({ orders, users, products });
-// //   } catch (error) {
-// //     console.error(error);
-// //     res.status(500).json({ error: messages.SERVER_ERROR });
-// //   }
-// // };
-
-
-// module.exports={placeOrder};
+        ],
+        include: [
+          {
+            model: User,
+            attributes: ['ID','Name','Email'],
+          },
+        ],
+        where: whereConditions,
+        group: ['Order.UserID','Order.Status'],
+        offset: offset,
+        limit: limit,
+        logging: console.log,
+      });
+  
+      const totalPages = Math.ceil(orders.count / limit);
+    
+      const formattedOrders = orders.rows.map(order => ({
+        UserName: order.User.Name,
+        Email: order.User.Email,
+        NoOfOrders: order.get('TotalOrders'),
+        NoOfProducts : order.get('TotalItems'),
+        TotalAmount: order.get('TotalAmount'),
+        Status: order.Status,
+      }));
+      
+      res.status(200).json({
+        orders: formattedOrders,
+        pagination: {
+          page: parseInt(page),
+          pageSize: limit,
+          totalPages: totalPages,
+        },
+      });
+    } catch (error) {
+      return next(error);
+    }
+  };
+  
+  
+module.exports={placeOrder,getAllOrders,updateOrderStatus,getCustomerOrderReport};

@@ -4,7 +4,6 @@ const sequelize =require('./db')
 const Cart = require('./Cart')
 
 
-
 const User = sequelize.define('User', {
   ID: {
     type: DataTypes.BIGINT.UNSIGNED,
@@ -75,13 +74,7 @@ const User = sequelize.define('User', {
   timestamps: false
 });
 
-
-
-
-// sequelize.sync().then(() => {
-//   console.log('tables created successfully!');
-// }).catch((error) => {
-//   console.error('Unable to create table : ', error);
-// });
+User.hasMany(Cart, { foreignKey: 'UserID' });
+Cart.belongsTo(User);
 
 module.exports = User;

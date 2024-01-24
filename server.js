@@ -3,12 +3,12 @@ require('dotenv').config()
 const port = process.env.PORT || 3000
 const Routes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoute');
-const notificationRoutes = require('./routes/notificationRoutes')
-const sequelize = require('./dbconfig/db')
+const notificationRoutes = require('./routes/notificationRoutes');
+const sequelize = require('./dbconfig/db');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json'); 
-
-require('./dbconfig/db')
+const orderRoutes = require('./routes/orderRoutes');
+require('./dbconfig/db');
 const { dashLogger } = require("./utils/logger");
 
 const app = express()
@@ -22,6 +22,7 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', Routes);
 app.use('/',productRoutes);
 app.use('/', notificationRoutes);
+app.use('/',orderRoutes);
 
 
 // Handle undefined routes
@@ -47,5 +48,5 @@ sequelize.sync({ force: false })
   })
   .catch((error) => {
     console.error('Error syncing Sequelize models:', error);
-  });
+});
 

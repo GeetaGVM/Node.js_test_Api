@@ -11,7 +11,10 @@ module.exports = {
         PASSWORD_RESET_TOKEN:'Password reset token generated successfully',
         FORGOT_PASSWORD_OTP_VERIFIED: 'Forgot password OTP verified successfully!',
         OTP_VERIFIED: 'OTP Verified sucessfully',
-        PUSHNOTIFICATION_SEND: 'Notification sent successfully'
+        PUSHNOTIFICATION_SEND: 'Notification sent successfully',
+        ORDER_SUCCESS:'Order placed successfully',
+        ORDER_STATUS_UPDATED : 'Order status updated',
+        ITEM_ADDED_CART:'Item added to cart successfully.'
 
 
     },
@@ -35,6 +38,11 @@ module.exports = {
         OTP_MISMATCH: 'Invalid OTP.',
         OTP_EXPIRED: 'OTP has expired.',
         INVALID_REQUEST_TYPE: 'Invalid request type.',
-        NOTIFICATION_FAILED:'Failed to send notification' 
+        NOTIFICATION_FAILED:'Failed to send notification',
+        ORDER_NOT_FOUND:'Order not found',
+        CART_NOT_FOUND:'Cart not found' ,
+        PRODUCT_OUT_OF_STOCK:'Product is out of stock',
+        INSUFFICIENT_STOCK:'Insufficient stock. The requested quantity is not available.',
+        USER_NOT_FOUND:"user not found"
     }
 };

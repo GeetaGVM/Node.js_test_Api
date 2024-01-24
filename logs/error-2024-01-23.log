@@ -1,0 +1,277 @@
+2024-01-23T04:49:34.955Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'findOrCreate'), 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"2","ProductID":"2","Quantity":"2"}
+2024-01-23T04:56:36.216Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'findOne'), 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"2","ProductID":"2","Quantity":"2"}
+2024-01-23T04:58:23.113Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'findByPk'), 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"2","ProductID":"2","Quantity":"2"}
+2024-01-23T04:58:46.454Z [ERROR]: ReferenceError: message is not defined, 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"2","ProductID":"2","Quantity":"2"}
+2024-01-23T05:02:59.688Z [ERROR]: TypeError: CartItem.findOne is not a function, 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"3","ProductID":"2","Quantity":"2"}
+2024-01-23T05:05:47.081Z [ERROR]: TypeError: CartItem.findOne is not a function, 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"3","ProductID":"2","Quantity":"2"}
+2024-01-23T05:10:51.579Z [ERROR]: TypeError: CartItem.findOne is not a function, 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"3","ProductID":"2","Quantity":"2"}
+2024-01-23T05:11:26.944Z [ERROR]: TypeError: CartItem.findOne is not a function, 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"3","ProductID":"2","Quantity":"2"}
+2024-01-23T05:29:44.111Z [ERROR]: ReferenceError: CartItem is not defined, 
+Request: /place-order, 
+Request Params: {}, 
+Request Body: {"UserID":"2","ShippingAddress":"103,apt","BillingAddress":"401 nyc"}
+2024-01-23T06:06:35.983Z [ERROR]: SequelizeEagerLoadingError: CartItem is not associated to Order!, 
+Request: /getallorder, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T06:09:26.574Z [ERROR]: SequelizeEagerLoadingError: Cart is not associated to Order!, 
+Request: /getallorder, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T06:10:21.467Z [ERROR]: SequelizeEagerLoadingError: CartItem is not associated to Order!, 
+Request: /getallorder, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T06:21:28.864Z [ERROR]: SequelizeDatabaseError: Unknown column 'OrderID' in 'field list', 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"3","ProductID":"3","Quantity":"1"}
+2024-01-23T06:28:41.417Z [ERROR]: SequelizeEagerLoadingError: Product is not associated to Order!, 
+Request: /getallorder, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T06:31:15.815Z [ERROR]: SequelizeEagerLoadingError: Product is not associated to Order!, 
+Request: /getallorder, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T06:51:07.313Z [ERROR]: SequelizeEagerLoadingError: Product is not associated to Order!, 
+Request: /getallorder, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T07:10:19.561Z [ERROR]: ReferenceError: sequelize is not defined, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":"1","pageSize":"2"}
+2024-01-23T07:11:16.422Z [ERROR]: ReferenceError: sequelize is not defined, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T07:11:46.941Z [ERROR]: ReferenceError: sequelize is not defined, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T07:12:38.542Z [ERROR]: SequelizeEagerLoadingError: Order is associated to User using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T07:16:31.244Z [ERROR]: SequelizeDatabaseError: Expression #6 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.orders->CartItems.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T07:22:39.241Z [ERROR]: SyntaxError: Unexpected token '}', ..."rchTerm":
+}" is not valid JSON, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {}
+2024-01-23T07:23:05.548Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:26:19.773Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:29:05.922Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:31:14.719Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:32:18.898Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:34:58.892Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:35:45.497Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.CartID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:36:28.995Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.CartID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:39:11.310Z [ERROR]: ReferenceError: Op is not defined, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:39:48.687Z [ERROR]: SequelizeEagerLoadingError: User is not associated to User!, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:41:07.131Z [ERROR]: SequelizeEagerLoadingError: Order is associated to User using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:44:30.822Z [ERROR]: SequelizeEagerLoadingError: Order is associated to User using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:49:04.173Z [ERROR]: SequelizeEagerLoadingError: User is not associated to User!, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:50:29.437Z [ERROR]: SequelizeEagerLoadingError: Order is associated to User using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T07:51:54.022Z [ERROR]: SequelizeEagerLoadingError: Order is associated to User using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:05:23.095Z [ERROR]: SequelizeEagerLoadingError: Order is associated to User using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:13:34.189Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.Username' in 'where clause', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:14:49.051Z [ERROR]: SequelizeDatabaseError: Unknown column 'Order.User.Username' in 'where clause', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:15:57.662Z [ERROR]: SequelizeDatabaseError: Unknown column 'Order.Username' in 'where clause', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:16:29.182Z [ERROR]: SequelizeDatabaseError: Unknown column 'Order.Username' in 'where clause', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:17:53.140Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.Username' in 'where clause', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:22:35.765Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:24:06.398Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:24:22.335Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:30:52.671Z [ERROR]: SequelizeEagerLoadingError: Order is associated to User using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:31:50.694Z [ERROR]: SequelizeEagerLoadingError: CartItem is not associated to User!, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:35:09.203Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'type'), 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:37:42.191Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'type'), 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:38:22.939Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'type'), 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:49:32.468Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'TotalAmount'), 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:52:34.071Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:53:24.116Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.Quantity' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:54:06.728Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.Quantity' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T09:54:27.727Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T10:02:26.655Z [ERROR]: SequelizeDatabaseError: Column 'ID' in field list is ambiguous, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T10:12:25.643Z [ERROR]: SequelizeDatabaseError: Unknown column 'Order.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T10:14:00.428Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T10:14:26.296Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ProductID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T10:22:52.515Z [ERROR]: SequelizeDatabaseError: Table 'loginauthentication.cart' doesn't exist, 
+Request: /cart-add, 
+Request Params: {}, 
+Request Body: {"UserID":"2","ProductID":"1","Quantity":"1"}
+2024-01-23T11:10:00.271Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T11:14:24.737Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T11:16:55.208Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T11:25:06.497Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T11:40:38.041Z [ERROR]: SequelizeDatabaseError: In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'loginauthentication.CartItem.ProductID'; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T11:42:11.694Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItem.ID' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T11:51:40.950Z [ERROR]: SequelizeEagerLoadingError: Order is not associated to Order!, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}
+2024-01-23T11:52:22.407Z [ERROR]: SequelizeEagerLoadingError: Order is not associated to Order!, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":""}

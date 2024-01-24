@@ -1,41 +1,64 @@
-const { CartItem } = require('../dbconfig/cartitem');
-const {Cart} = require('../dbconfig/Cart');
-const {Product} = require('../dbconfig/Product')
+const CartItem = require('../dbconfig/Cartitem');
+const Cart = require('../dbconfig/Cart');
+const Product = require('../dbconfig/Product');
+const message = require('../utils/message');
 
-const addToCart = async (userId, productId, quantity) => {
+const addToCart = async (req, res,next) => {
   try {
-    if (!userId || !productId || !quantity || quantity <= 0) {
-      throw new Error('Invalid input data');
-    }
-    const cart = await Cart.findOne({
-      where: { UserId: userId },
+    const { UserID, ProductID, Quantity } = req.body;
+
+    // Find or create a cart for the user
+    const [cart, created] = await Cart.findOrCreate({
+      where: { UserID },
+      defaults: { UserID },
     });
 
-    if (!cart) {
-      throw new Error('User cart not found');
+    // Use the existing or newly created cart ID
+    const CartID = cart.ID;
+
+    // Fetch the product details to get the price
+    const product = await Product.findByPk(ProductID);
+
+    if (!product) {
+      return res.status(404).json({ message : message.error.PRODUCT_NOT_FOUND });
     }
 
-    const product = await Product.findByPk(productId);
-
-    if (!product || !product.IsInStock) {
-      throw new Error('Product not found or out of stock');
+     // Check if the product is in stock
+     if (product.IsInStock <= 0) {
+      return res.status(400).json({ message: message.error.PRODUCT_OUT_OF_STOCK });
     }
 
-
-    if (quantity > product.Quantity) {
-      throw new Error('Requested quantity not available');
+    // Check if the requested quantity is available
+    if (Quantity > product.Quantity) {
+      return res.status(400).json({ message: message.error.INSUFFICIENT_STOCK });
     }
 
-    const cartItem = await CartItem.create({
-      CartId: cart.id,
-      ProductId: productId,
-      Quantity: quantity,
+    // Calculate total amount based on quantity and product price
+    const TotalAmount = Quantity * product.Price;
+
+    // Check if the product already exists in the cart
+    const existingCartItem = await CartItem.findOne({
+      where: { CartID, ProductID },
     });
 
-    return { success: true, cartItem };
+    if (existingCartItem) {
+      // If the product exists, update the quantity and total amount
+      existingCartItem.Quantity = Quantity;
+      existingCartItem.TotalAmount = TotalAmount;
+      await existingCartItem.save();
+    } else {
+      // If the product doesn't exist, create a new cart item
+      await CartItem.create({
+        CartID,
+        ProductID,
+        Quantity,
+        TotalAmount,
+      });
+    }
+
+    res.status(200).json({ message: message.success.ITEM_ADDED_CART});
   } catch (error) {
-    console.error(error);
-    return { success: false, error: error.message };
+    return next(error);
   }
 };
 

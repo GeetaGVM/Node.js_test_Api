@@ -1,0 +1,76 @@
+2024-01-24T04:18:07.770Z [ERROR]: SequelizeDatabaseError: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ILIKE '%jaydeep%' OR `User`.`Email` ILIKE '%jaydeep%') GROUP BY `UserID`, `User`' at line 1, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"jaydeep","Status":""}
+2024-01-24T04:27:46.608Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:29:47.138Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:30:38.161Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:31:17.077Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:32:23.546Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:33:25.271Z [ERROR]: SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.Order.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:34:39.586Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:35:17.412Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.ID' in 'group statement', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:36:53.392Z [ERROR]: SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.Order.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:37:48.896Z [ERROR]: SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.Order.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:45:27.818Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItems.Quantity' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T04:46:44.583Z [ERROR]: SequelizeDatabaseError: Unknown column 'CartItems.Quantity' in 'field list', 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":"shipped"}
+2024-01-24T05:41:06.811Z [ERROR]: SyntaxError: Expected double-quoted property name in JSON at position 98, 
+Request: /getProductReport, 
+Request Params: {}, 
+Request Body: {}
+2024-01-24T06:02:27.200Z [ERROR]: SequelizeDatabaseError: Unknown column 'User.createdAt' in 'where clause', 
+Request: /getTotalReports, 
+Request Params: {}, 
+Request Body: {"startDate":"2024-01-17","endDate":"2024-01-18"}
+2024-01-24T06:46:59.118Z [ERROR]: SequelizeDatabaseError: Unknown column 'ProductStatus' in 'field list', 
+Request: /getproduct/1, 
+Request Params: {}, 
+Request Body: {}
+2024-01-24T07:31:46.912Z [ERROR]: SequelizeDatabaseError: Unknown column 'ProductMedia.ProductStatus' in 'where clause', 
+Request: /getproduct/4, 
+Request Params: {}, 
+Request Body: {}
+2024-01-24T09:22:05.449Z [ERROR]: SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.Order.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":""}
+2024-01-24T09:23:06.928Z [ERROR]: SequelizeDatabaseError: Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.Order.Status' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getCustomerOrderReport, 
+Request Params: {}, 
+Request Body: {"page":1,"pageSize":10,"startDate":"","endDate":"","searchTerm":"","Status":""}

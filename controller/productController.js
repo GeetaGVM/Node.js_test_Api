@@ -1,12 +1,12 @@
 const { Op } = require('sequelize');
-const Product = require('../dbconfig/product'); 
+const Product = require('../dbconfig/Product'); 
 const messages = require('../utils/message');
 const { ProductMedia } = require('../dbconfig/productMedia');
 
 
 //add product
 const createProduct = async (req, res, next) => {
-  const { ProductName, Description, Price, IsInStock, Quantity } = req.body;
+  const { ProductName, Description, Price, IsInStock, Quantity,ProductStatus } = req.body;
   try {
   
     if (!ProductName || !Description || !Price || !IsInStock || !Quantity || !req.files) {
@@ -25,6 +25,7 @@ const createProduct = async (req, res, next) => {
       Price,
       IsInStock,
       Quantity,
+      ProductStatus,
     });
 
     const createProductMediaEntries = async (imagePaths, isMainImage) => {
@@ -110,20 +111,24 @@ const updateProduct = async (req, res, next) => {
 
 
 
-// get all product with pagination
+// get all product  for user with pagination
 const getAllProducts = async (req, res, next) => {
   try {
-    const { page = 1, limit, search = '' } = req.query;
+    const { page = 1, limit, search = '' } = req.body;
     const offset = (page - 1) * (limit ? parseInt(limit, 10) : 0);
     const options = {
       attributes: { exclude: ['CreatedAt', 'UpdatedAt'] },
       offset,
       limit: limit ? parseInt(limit, 10) : null,
+      where: {
+        ProductStatus: 'published', 
+      },
     };
 
     if (search) {
       options.where = {
         [Op.or]: [
+          
           { ProductName: { [Op.like]: `%${search}%` } },
           { Description: { [Op.like]: `%${search}%` } },
         ],
@@ -158,9 +163,12 @@ const getProductById = async (req, res, next) => {
     const { id } = req.params;
     const product = await Product.findByPk(id, {
       attributes: { exclude: ['CreatedAt', 'UpdatedAt'] },
+      where: {
+        ProductStatus: 'published',
+      },
     });
 
-    if (!product) {
+    if (!product || product.ProductStatus !== 'published') {
       return res.status(404).json({ message: messages.error.PRODUCT_NOT_FOUND });
     }
 
@@ -198,10 +206,63 @@ const deleteProduct = async (req, res, next) => {
   }
 };
 
+
+//for admin - for product report 
+const getProductReport = async (req, res, next) => {
+  try {
+      const { page = 1, pageSize = 10, searchTerm, startDate, endDate } = req.body;
+
+      const offset = (page - 1) * pageSize;
+      const limit = parseInt(pageSize);
+
+      const whereConditions = {};
+      if (searchTerm) {
+          whereConditions[Op.or] = [
+              { 'productName': { [Op.like]: `%${searchTerm}%` } },
+              { 'description': { [Op.like]: `%${searchTerm}%` } },
+          ];
+      }
+      if (startDate && endDate) {
+          whereConditions.createdAt = {
+              [Op.between]: [new Date(startDate), new Date(endDate)],
+          };
+      }
+
+      const products = await Product.findAndCountAll({
+        attributes: {
+          exclude: [
+            'CreatedAt',
+            'UpdatedAt',
+          ],
+        },
+          where: whereConditions,
+          offset: offset,
+          limit: limit,
+      });
+
+      const totalPages = Math.ceil(products.count / limit);
+
+      res.status(200).json({
+          products: products.rows,
+          totalItems: products.count,
+          pagination: {
+              page: parseInt(page),
+              pageSize: limit,
+              totalPages: totalPages,
+              
+          },
+      });
+  } catch (error) {
+      return next(error);
+  }
+};
+
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
   updateProduct,
   deleteProduct,
+  getProductReport,
 };

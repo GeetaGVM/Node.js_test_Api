@@ -1,7 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
-// const CartItem = require('./Cartitem');
-// const Cart = require('./Cart')
 
 const Product = sequelize.define('Product', {
   ID: {
@@ -31,6 +29,11 @@ const Product = sequelize.define('Product', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  ProductStatus: {
+    type: DataTypes.ENUM('published', 'inactive', 'draft'),
+    allowNull: false,
+    defaultValue: 'draft',
+  },
   CreatedAt: {
     type: DataTypes.DATE,
     allowNull: false,
@@ -47,12 +50,6 @@ const Product = sequelize.define('Product', {
 });
 
 
-
-// sequelize.sync().then(() => {
-//   console.log('tables created successfully!');
-// }).catch((error) => {
-//   console.error('Unable to create table : ', error);
-// });
 
 
 module.exports = Product;

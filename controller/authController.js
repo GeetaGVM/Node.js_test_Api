@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const db = require('../dbconfig/db');
 const { generateToken } = require('../middleware/auth');
-const User = require('../dbconfig/user');
+const User = require('../dbconfig/User');
 const messages = require('../utils/message');
 const {sendEmailOTP} = require('../utils/email');
 const commonFunctions = require('../utils/commonFuction')
@@ -444,6 +444,59 @@ const logout = async (req, res, next) => {
   }
 };
 
+//for admin - user report 
+const getUserReport = async (req, res, next) => {
+  try {
+      const { page = 1, pageSize = 10, searchTerm, startDate, endDate } = req.body;
+
+      const offset = (page - 1) * pageSize;
+      const limit = parseInt(pageSize);
+
+      const whereConditions = {};
+      if (searchTerm) {
+          whereConditions[Op.or] = [
+              { 'Name': { [Op.like]: `%${searchTerm}%` } },
+              { 'Email': { [Op.like]: `%${searchTerm}%` } },
+          ];
+      }
+      if (startDate && endDate) {
+          whereConditions.createdAt = {
+              [Op.between]: [new Date(startDate), new Date(endDate)],
+          };
+      }
+
+      const users = await User.findAndCountAll({
+        attributes: {
+          exclude: [
+            'Password',
+            'AccessToken',
+            'Otp_expiration_time',
+            'Is_otp_verified',
+            'Created_at',
+            'Updated_at',
+            'Otp',
+          ],
+        },
+          where: whereConditions,
+          offset: offset,
+          limit: limit,
+      });
+
+      const totalPages = Math.ceil(users.count / limit);
+
+      res.status(200).json({
+          users: users.rows,
+          TotalUser: users.count,
+          pagination: {
+              page: parseInt(page),
+              pageSize: limit,
+              totalPages: totalPages,
+          },
+      });
+  } catch (error) {
+      return next(error);
+  }
+};
   
 module.exports = { registerUser, loginWithPassword ,requestLoginOTP,loginWithOTP,resendOTP,verifyForgotPasswordOTP,
-  verifyOTP,getAllUsers,forgotPassword,resetPassword,logout };
+  verifyOTP,getAllUsers,forgotPassword,resetPassword,logout,getUserReport };

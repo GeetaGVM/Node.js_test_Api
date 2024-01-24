@@ -2,6 +2,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
 const User = require('./User')
+const Product = require('./Product');
 
 const Order = sequelize.define('Order', {
   ID: {
@@ -18,9 +19,13 @@ const Order = sequelize.define('Order', {
       key: 'ID',
     },
   },
-  TotalAmount: {
+  GrandTotal: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  TotalItems: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
   ShippingAddress: {
     type: DataTypes.STRING, 
@@ -31,9 +36,9 @@ const Order = sequelize.define('Order', {
     allowNull: false,
   },
   Status: {
-    type: DataTypes.STRING, // ENUM('pending', 'shipped', 'delivered', 'cancelled', etc.)
+    type: DataTypes.ENUM('pending', 'shipped', 'delivered', 'cancelled','order placed'), // Use ENUM for predefined values
     allowNull: false,
-    defaultValue: 'pending'
+    defaultValue: 'order placed'
   },
   OrderDateTime: {
     type: DataTypes.DATE,
@@ -41,13 +46,9 @@ const Order = sequelize.define('Order', {
     defaultValue: DataTypes.NOW
   },
   PaymentStatus: {
-    type: DataTypes.STRING, // ENUM('pending', 'paid', 'failed', etc.)
+    type: DataTypes.ENUM('pending', 'paid', 'failed'),
     allowNull: false,
     defaultValue: 'pending'
-  },
-  DeliveredDateTime: {
-    type: DataTypes.DATE,
-    allowNull: true,
   },
   CreatedAt: {
     type: DataTypes.DATE,
@@ -65,13 +66,10 @@ const Order = sequelize.define('Order', {
 });
 
 
-User.hasMany(Order, { foreignKey: 'UserID', as: 'orders' });
+User.hasMany(Order, { foreignKey: 'UserID', as: 'orders', });
 Order.belongsTo(User);
 
-// sequelize.sync().then(() => {
-//     console.log('order tables created successfully!');
-//   }).catch((error) => {
-//     console.error('Unable to create table : ', error);
-//   });
+Order.belongsToMany(Product, { through: 'CartItem', foreignKey: 'OrderID' });
+Product.belongsToMany(Order, { through: 'CartItem', foreignKey: 'ProductID' });
 
 module.exports = Order;

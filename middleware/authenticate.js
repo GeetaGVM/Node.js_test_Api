@@ -1,5 +1,5 @@
 const commonFunctions = require('../utils/commonFuction');
-const User = require('../dbconfig/user');
+const User = require('../dbconfig/User');
 const messages = require('../utils/message');
 
 async function authenticate(req, res, next) {

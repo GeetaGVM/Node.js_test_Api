@@ -1,19 +1,14 @@
 
 const UserRole = {
-    ADMIN: '0',
-    USER: '1'
+    ADMIN: 'admin',
+    USER: 'user'
 };
 
 const LoginTypeEnum = {
-    EMAIL: '0',
-    PHONE: '1'
+    EMAIL: 'email',
+    PHONE: 'phone'
 };
 
-const OrderStatus = {
-    PLACED: '0',
-    PENDING: '1',
-    DELIVERED: '2',
-};
 
 function randomFourDigitCode() {
     return Math.floor(1000 + Math.random() * 9000);
@@ -24,6 +19,6 @@ const calculateTotalPrice = (price, quantity) => {
   };
   
 
-module.exports = {UserRole,LoginTypeEnum,randomFourDigitCode,OrderStatus,calculateTotalPrice,constants: {
+module.exports = {UserRole,LoginTypeEnum,randomFourDigitCode,calculateTotalPrice,constants: {
     OTP_EXPIRATION_SECONDS: 60,
 }}
