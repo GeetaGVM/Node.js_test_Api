@@ -14,7 +14,9 @@ module.exports = {
         PUSHNOTIFICATION_SEND: 'Notification sent successfully',
         ORDER_SUCCESS:'Order placed successfully',
         ORDER_STATUS_UPDATED : 'Order status updated',
-        ITEM_ADDED_CART:'Item added to cart successfully.'
+        ITEM_ADDED_CART:'Item added to cart successfully.',
+        PRODUCT_REVIEW_SUCCESS : 'Product review and rating successfully added',
+        ORDER_REVIEW_SUCCESS : 'Order review and rating successfully added'
 
 
     },
@@ -43,6 +45,9 @@ module.exports = {
         CART_NOT_FOUND:'Cart not found' ,
         PRODUCT_OUT_OF_STOCK:'Product is out of stock',
         INSUFFICIENT_STOCK:'Insufficient stock. The requested quantity is not available.',
-        USER_NOT_FOUND:"user not found"
+        USER_NOT_FOUND:'user not found',
+        NOT_FOUND:'User or order not found',
+        NOT_FOUND2 : 'User or order not found' ,
+
     }
 };
