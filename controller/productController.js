@@ -271,7 +271,7 @@ const reviewProduct = async (req, res, next) => {
     const product = await Product.findByPk(productID);
 
     if (!user || !product) {
-      return res.status(404).json({ MESSAGE : messages.error.NOT_FOUND});
+      return res.status(404).json({ MESSAGE : messages.error.NOT_FOUND2});
     }
 
     // Create the product review
@@ -299,7 +299,7 @@ const addToWishlist = async (req, res, next) => {
     const product = await Product.findByPk(productID);
 
     if (!user || !product) {
-      return res.status(404).json({ message: 'User or product not found.' });
+      return res.status(404).json({ message:messages.error.NOT_FOUND2});
     }
 
     // Check if the product is already in the user's wishlist
@@ -311,7 +311,7 @@ const addToWishlist = async (req, res, next) => {
     });
 
     if (isInWishlist) {
-      return res.status(400).json({ message: 'Product is already in the wishlist.' });
+      return res.status(400).json({ message: messages.error.ALREADY_WISHLIST });
     }
 
     // Add the product to the user's wishlist
@@ -320,7 +320,7 @@ const addToWishlist = async (req, res, next) => {
       ProductID: productID,
     });
 
-    return res.status(201).json({ message: 'Product added to wishlist successfully.' });
+    return res.status(201).json({ message: messages.success.ADD_WISHLIST });
   } catch (error) {
     return next(error);
   }
@@ -337,7 +337,7 @@ const removeFromWishlist = async (req, res, next) => {
     const product = await Product.findByPk(productID);
 
     if (!user || !product) {
-      return res.status(404).json({ message: 'User or product not found.' });
+      return res.status(404).json({ message: messages.error.NOT_FOUND2 });
     }
 
     // Remove the product from the user's wishlist
@@ -348,7 +348,7 @@ const removeFromWishlist = async (req, res, next) => {
       },
     });
 
-    return res.status(200).json({ message: 'Product removed from wishlist successfully.' });
+    return res.status(200).json({ message: messages.success.REMOVE_WISHLIST });
   } catch (error) {
     return next(error);
   }

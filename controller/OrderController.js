@@ -9,7 +9,7 @@ const { Op } = require('sequelize');
 const OrderReview = require('../dbconfig/OrderReview');
 const OrderItem = require('../dbconfig/OrderItem');
 
-
+//for user - place order
 const placeOrder = async (req, res, next) => {
     try {
       const { UserID, ShippingAddress, BillingAddress } = req.body;
@@ -81,6 +81,7 @@ const placeOrder = async (req, res, next) => {
 };
   
 
+//for admin- get all orders
 const getAllOrders = async (req, res, next) => {
     try {
       const orders = await Order.findAll({
@@ -165,7 +166,6 @@ const getCustomerOrderReport = async (req, res, next) => {
         group: ['Order.UserID','Order.Status'],
         offset: offset,
         limit: limit,
-        logging: console.log,
       });
   
       const totalPages = Math.ceil(orders.count / limit);
@@ -203,7 +203,7 @@ const  ReviewOrder = async (req, res,next) => {
     const order = await Order.findByPk(orderID);
 
     if (!user || !order) {
-      return res.status(404).json({ message : messages.error.NOT_FOUND2 });
+      return res.status(404).json({ message : messages.error.NOT_FOUND });
     }
 
     const userHasOrder = await Order.findOne({

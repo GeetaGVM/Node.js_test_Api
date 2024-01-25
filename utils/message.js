@@ -16,7 +16,9 @@ module.exports = {
         ORDER_STATUS_UPDATED : 'Order status updated',
         ITEM_ADDED_CART:'Item added to cart successfully.',
         PRODUCT_REVIEW_SUCCESS : 'Product review and rating successfully added',
-        ORDER_REVIEW_SUCCESS : 'Order review and rating successfully added'
+        ORDER_REVIEW_SUCCESS : 'Order review and rating successfully added',
+        ADD_WISHLIST:'Product added to wishlist successfully.',
+        REMOVE_WISHLIST : 'Product removed from wishlist successfully.',
 
 
     },
@@ -47,7 +49,9 @@ module.exports = {
         INSUFFICIENT_STOCK:'Insufficient stock. The requested quantity is not available.',
         USER_NOT_FOUND:'user not found',
         NOT_FOUND:'User or order not found',
-        NOT_FOUND2 : 'User or order not found' ,
+        NOT_FOUND2 : 'User or product not found' ,
+        ALREADY_WISHLIST:'Product is already in the wishlist.',
+    
 
     }
 };
