@@ -6,7 +6,8 @@ const messages = require('../utils/message');
 const CartItem = require('../dbconfig/Cartitem');
 const sequelize = require('../dbconfig/db'); 
 const { Op } = require('sequelize');
-
+const OrderReview = require('../dbconfig/OrderReview');
+const OrderItem = require('../dbconfig/OrderItem');
 
 
 const placeOrder = async (req, res, next) => {
@@ -23,7 +24,6 @@ const placeOrder = async (req, res, next) => {
         return res.status(404).json({ message : messages.error.CART_NOT_FOUND });
       }
   
-      // Calculate the total amount from cart items
       const GrandTotal = cart.CartItems.reduce((total, cartItem) => total + parseFloat(cartItem.TotalAmount), 0);
       const totalItems = cart.CartItems.reduce((total, cartItem) => total + cartItem.Quantity, 0);
 
@@ -50,10 +50,17 @@ const placeOrder = async (req, res, next) => {
             const product = cartItem.Product;
             product.Quantity -= cartItem.Quantity;
             await product.save();
-            // Associate the cart item with the order
+
+            const orderItem = await OrderItem.create({
+              OrderID: order.ID,
+              ProductID: product.ID,
+              UserID, UserID,
+              Quantity: cartItem.Quantity,
+              TotalAmount: parseFloat(cartItem.TotalAmount),
+            });
+
             await cartItem.update({ OrderID: order.ID });
   
-            // Include modified product details in the response
             cartItem.dataValues.Product = product;
           }
         })
@@ -71,7 +78,7 @@ const placeOrder = async (req, res, next) => {
     } catch (error) {
       return next(error);
     }
-  };
+};
   
 
 const getAllOrders = async (req, res, next) => {
@@ -87,7 +94,8 @@ const getAllOrders = async (req, res, next) => {
       return next(error);
     }
   };
-  
+ 
+// update order status admin  
 const updateOrderStatus = async (req, res,next) => {
     try {
      
@@ -109,10 +117,11 @@ const updateOrderStatus = async (req, res,next) => {
     } catch (error) {
      return next(error);
     }
-  };
+};
 
 
 
+//user order report for admin  
 const getCustomerOrderReport = async (req, res, next) => {
     try {
       const { page = 1, pageSize = 10, searchTerm, startDate, endDate,Status } = req.body;
@@ -181,7 +190,47 @@ const getCustomerOrderReport = async (req, res, next) => {
     } catch (error) {
       return next(error);
     }
-  };
+};
+
+
+//for user - review order 
+const  ReviewOrder = async (req, res,next) => {
+  try {
+    const { userID, orderID, rating, review } = req.body;
+    console.log("userid :",userID)
+
+    const user = await User.findByPk(userID);
+    const order = await Order.findByPk(orderID);
+
+    if (!user || !order) {
+      return res.status(404).json({ message : messages.error.NOT_FOUND2 });
+    }
+
+    const userHasOrder = await Order.findOne({
+      where: {
+        UserID: userID,
+        ID: orderID,
+      },
+    });
+
+    if (!userHasOrder) {
+      return res.status(400).json({ message: 'User does not have the specified order.' });
+    }
+
+    // Create the order review
+    const orderReview = await OrderReview.create({
+      UserID : userID,
+      OrderID: orderID,
+      Rating: rating,
+      Review: review,
+    });
+
+    return res.status(201).json({ messaage : messages.success.ORDER_REVIEW_SUCCESS , review:orderReview });
+  } catch (error) {
+    return next(error)
+  }
+};
+
   
   
-module.exports={placeOrder,getAllOrders,updateOrderStatus,getCustomerOrderReport};
+module.exports={placeOrder,getAllOrders,updateOrderStatus,getCustomerOrderReport,ReviewOrder};

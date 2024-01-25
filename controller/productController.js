@@ -2,6 +2,9 @@ const { Op } = require('sequelize');
 const Product = require('../dbconfig/Product'); 
 const messages = require('../utils/message');
 const { ProductMedia } = require('../dbconfig/productMedia');
+const ProductReview = require('../dbconfig/ProductReview');
+const Wishlist = require('../dbconfig/Wishlist');
+const User = require('../dbconfig/User');
 
 
 //add product
@@ -157,7 +160,8 @@ const getAllProducts = async (req, res, next) => {
 };
 
 
-// get product by id
+
+// for user - get product by id 
 const getProductById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -187,7 +191,7 @@ const getProductById = async (req, res, next) => {
 };
 
 
-// Delete Product
+// for admin - Delete Product 
 const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -258,6 +262,98 @@ const getProductReport = async (req, res, next) => {
 };
 
 
+//for user - review product 
+const reviewProduct = async (req, res, next) => {
+  try {
+    const { userID, productID, rating, review } = req.body;
+
+    const user = await User.findByPk(userID);
+    const product = await Product.findByPk(productID);
+
+    if (!user || !product) {
+      return res.status(404).json({ MESSAGE : messages.error.NOT_FOUND});
+    }
+
+    // Create the product review
+    const productReview = await ProductReview.create({
+      UserID: userID,
+      ProductID: productID,
+      Rating: rating,
+      Review: review,
+    });
+
+    return res.status(201).json({ message : messages.success.PRODUCT_REVIEW_SUCCESS,review:productReview});
+  } catch (error) {
+    return next(error);
+  }
+}
+
+
+//for user- adding to wishlist
+const addToWishlist = async (req, res, next) => {
+  try {
+    const { userID, productID } = req.body;
+
+    // Check if the product and user exist
+    const user = await User.findByPk(userID);
+    const product = await Product.findByPk(productID);
+
+    if (!user || !product) {
+      return res.status(404).json({ message: 'User or product not found.' });
+    }
+
+    // Check if the product is already in the user's wishlist
+    const isInWishlist = await Wishlist.findOne({
+      where: {
+        UserID: userID,
+        ProductID: productID,
+      },
+    });
+
+    if (isInWishlist) {
+      return res.status(400).json({ message: 'Product is already in the wishlist.' });
+    }
+
+    // Add the product to the user's wishlist
+    await Wishlist.create({
+      UserID: userID,
+      ProductID: productID,
+    });
+
+    return res.status(201).json({ message: 'Product added to wishlist successfully.' });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+
+//for user - delete wishlist
+const removeFromWishlist = async (req, res, next) => {
+  try {
+    const { userID, productID } = req.body;
+
+    // Check if the product and user exist
+    const user = await User.findByPk(userID);
+    const product = await Product.findByPk(productID);
+
+    if (!user || !product) {
+      return res.status(404).json({ message: 'User or product not found.' });
+    }
+
+    // Remove the product from the user's wishlist
+    await Wishlist.destroy({
+      where: {
+        UserID: userID,
+        ProductID: productID,
+      },
+    });
+
+    return res.status(200).json({ message: 'Product removed from wishlist successfully.' });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
@@ -265,4 +361,8 @@ module.exports = {
   updateProduct,
   deleteProduct,
   getProductReport,
+  reviewProduct,
+  addToWishlist,
+  removeFromWishlist
+
 };

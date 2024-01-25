@@ -1,0 +1,28 @@
+2024-01-25T06:35:18.516Z [ERROR]: SequelizeValidationError: notNull Violation: OrderReview.UserID cannot be null, 
+Request: /Order-Review, 
+Request Params: {}, 
+Request Body: {"userID":"4","orderID":"2","rating":"5","review":"its goood for kids"}
+2024-01-25T06:35:35.824Z [ERROR]: SequelizeValidationError: notNull Violation: OrderReview.UserID cannot be null, 
+Request: /Order-Review, 
+Request Params: {}, 
+Request Body: {"userID":"2","orderID":"2","rating":"5","review":"its goood for kids"}
+2024-01-25T06:38:36.139Z [ERROR]: SequelizeValidationError: notNull Violation: OrderReview.UserID cannot be null, 
+Request: /Order-Review, 
+Request Params: {}, 
+Request Body: {"userID":"2","orderID":"2","rating":"5","review":"its goood for kids"}
+2024-01-25T06:57:17.501Z [ERROR]: SequelizeValidationError: notNull Violation: OrderReview.UserID cannot be null, 
+Request: /Order-Review, 
+Request Params: {}, 
+Request Body: {"userID":"2","orderID":"2","rating":"5","review":"its goood for kids"}
+2024-01-25T06:57:55.735Z [ERROR]: SequelizeDatabaseError: Field 'UserID' doesn't have a default value, 
+Request: /Order-Review, 
+Request Params: {}, 
+Request Body: {"userID":"2","orderID":"2","rating":"5","review":"its goood for kids"}
+2024-01-25T07:00:07.860Z [ERROR]: SequelizeValidationError: notNull Violation: OrderReview.UserID cannot be null, 
+Request: /Order-Review, 
+Request Params: {}, 
+Request Body: {"userID":"2","orderID":"2","rating":"5","review":"its goood for kids"}
+2024-01-25T07:35:12.094Z [ERROR]: ReferenceError: Wishlist is not defined, 
+Request: /addToWishlist, 
+Request Params: {}, 
+Request Body: {"userID":"2","productID":"2"}

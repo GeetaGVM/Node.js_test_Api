@@ -7,7 +7,10 @@ const {
   getAllProducts,
   getProductById,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  reviewProduct,
+  addToWishlist,
+  removeFromWishlist
 } = require('../controller/productController');
 const {uploadProductMedia} = require('../middleware/upload');
 
@@ -20,6 +23,9 @@ router.put('/update-product/:id',uploadProductMedia, authenticate,authorize(['ad
 router.delete('/delete-product/:id',authenticate,authorize(['admin']), deleteProduct);
 router.get('/getallproduct', getAllProducts);
 router.get('/getproduct/:id', getProductById);
+router.post('/Product-Review',reviewProduct);
+router.post('/addToWishlist',addToWishlist);
+router.post('/removeFromWishlist',removeFromWishlist);
 
 
 module.exports = router;

@@ -3,6 +3,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
 const User = require('./User')
 const Product = require('./Product');
+const OrderReview = require('./OrderReview');
 
 const Order = sequelize.define('Order', {
   ID: {
@@ -66,10 +67,14 @@ const Order = sequelize.define('Order', {
 });
 
 
-User.hasMany(Order, { foreignKey: 'UserID', as: 'orders', });
-Order.belongsTo(User);
+
 
 Order.belongsToMany(Product, { through: 'CartItem', foreignKey: 'OrderID' });
 Product.belongsToMany(Order, { through: 'CartItem', foreignKey: 'ProductID' });
+
+Order.hasMany(OrderReview, { foreignKey: 'OrderID'});
+OrderReview.belongsTo(Order);
+
+
 
 module.exports = Order;
