@@ -1,0 +1,20 @@
+2024-01-30T04:26:54.212Z [ERROR]: SequelizeForeignKeyConstraintError: Cannot add or update a child row: a foreign key constraint fails (`loginauthentication`.`reviewimages`, CONSTRAINT `reviewimages_ibfk_1` FOREIGN KEY (`targetId`) REFERENCES `product` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE), 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"4","targetType":"Order","rating":"4","review":"its goood for kids and adults   ","targetId":"7"}
+2024-01-30T04:32:52.721Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You've included an alias (ReviewImages), but it does not match the alias(es) defined in your association (ReviewImage)., 
+Request: /getAllReviews, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T04:54:17.075Z [ERROR]: SequelizeForeignKeyConstraintError: Cannot add or update a child row: a foreign key constraint fails (`loginauthentication`.`reviewimages`, CONSTRAINT `reviewimages_ibfk_1` FOREIGN KEY (`targetId`) REFERENCES `review` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE), 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"2","targetType":"Product","rating":"3","review":"its goood for kids and adults   ","targetId":"2"}
+2024-01-30T05:06:05.832Z [ERROR]: SequelizeForeignKeyConstraintError: Cannot add or update a child row: a foreign key constraint fails (`loginauthentication`.`reviewimages`, CONSTRAINT `reviewimages_ibfk_1` FOREIGN KEY (`targetId`) REFERENCES `review` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE), 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"3","targetType":"Product","rating":"5","review":"its goood for kids and adults   ","targetId":"1"}
+2024-01-30T05:08:07.235Z [ERROR]: SequelizeForeignKeyConstraintError: Cannot add or update a child row: a foreign key constraint fails (`loginauthentication`.`reviewimages`, CONSTRAINT `reviewimages_ibfk_1` FOREIGN KEY (`targetId`) REFERENCES `review` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE), 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"3","targetType":"Product","rating":"5","review":"its goood for kids and adults   ","targetId":"1"}
