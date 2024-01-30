@@ -17,7 +17,7 @@ router.post('/updateOrderStatus',authenticate,authorize(['admin']),updateOrderSt
 router.get('/getCustomerOrderReport',authenticate,authorize(['admin']),getCustomerOrderReport);
 router.get('/getProductReport',authenticate,authorize(['admin']),getProductReport);
 router.get('/getUserReport',authenticate,authorize(['admin']),getUserReport);
-router.post('/Order-Review',ReviewOrder);
+
 
 
 module.exports = router;

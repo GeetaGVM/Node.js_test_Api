@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
 const User = require('./User')
 const Product = require('./Product');
-const OrderReview = require('./OrderReview');
+
 
 const Order = sequelize.define('Order', {
   ID: {
@@ -37,7 +37,7 @@ const Order = sequelize.define('Order', {
     allowNull: false,
   },
   Status: {
-    type: DataTypes.ENUM('pending', 'shipped', 'delivered', 'cancelled','order placed'), // Use ENUM for predefined values
+    type: DataTypes.ENUM('pending', 'shipped', 'delivered', 'cancelled','order placed'), 
     allowNull: false,
     defaultValue: 'order placed'
   },
@@ -68,12 +68,9 @@ const Order = sequelize.define('Order', {
 
 
 
-
 Order.belongsToMany(Product, { through: 'CartItem', foreignKey: 'OrderID' });
 Product.belongsToMany(Order, { through: 'CartItem', foreignKey: 'ProductID' });
 
-Order.hasMany(OrderReview, { foreignKey: 'OrderID'});
-OrderReview.belongsTo(Order);
 
 
 

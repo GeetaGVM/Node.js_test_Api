@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
-const ProductReview = require('./ProductReview');
+
 
 const Product = sequelize.define('Product', {
   ID: {
@@ -49,8 +49,6 @@ const Product = sequelize.define('Product', {
   tableName: 'Product',
   timestamps: false
 });
-
-
 
 
 module.exports = Product;

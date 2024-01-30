@@ -8,11 +8,12 @@ const {
   getProductById,
   updateProduct,
   deleteProduct,
-  reviewProduct,
   addToWishlist,
-  removeFromWishlist
+  removeFromWishlist,
+  searchProducts
 } = require('../controller/productController');
-const {uploadProductMedia} = require('../middleware/upload');
+const {uploadProductMedia,uploadReviewMedia} = require('../middleware/upload');
+const {ReviewRating,getAllReviews,getReviewsbyid} = require('../controller/ReviewController');
 
 
 
@@ -23,9 +24,12 @@ router.put('/update-product/:id',uploadProductMedia, authenticate,authorize(['ad
 router.delete('/delete-product/:id',authenticate,authorize(['admin']), deleteProduct);
 router.get('/getallproduct', getAllProducts);
 router.get('/getproduct/:id', getProductById);
-router.post('/Product-Review',reviewProduct);
+router.post('/addReview',uploadReviewMedia,ReviewRating);
 router.post('/addToWishlist',addToWishlist);
 router.post('/removeFromWishlist',removeFromWishlist);
+router.post('/getAllReviews',getAllReviews);
+router.post('/searchProducts',searchProducts)
+router.post('/getReviewsbyid',getReviewsbyid)
 
 
 module.exports = router;

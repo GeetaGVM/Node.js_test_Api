@@ -2,9 +2,9 @@ const { Op } = require('sequelize');
 const Product = require('../dbconfig/Product'); 
 const messages = require('../utils/message');
 const { ProductMedia } = require('../dbconfig/productMedia');
-const ProductReview = require('../dbconfig/ProductReview');
 const Wishlist = require('../dbconfig/Wishlist');
 const User = require('../dbconfig/User');
+const message = require('../utils/message');
 
 
 //add product
@@ -69,7 +69,7 @@ const updateProduct = async (req, res, next) => {
     let product = await Product.findByPk(productId);
 
     if (!product) {
-      return res.status(404).json({ error: 'Product not found.' });
+      return res.status(404).json({ message : messages.error.PRODUCT_NOT_FOUND });
     }
 
     if (ProductName) product.ProductName = ProductName;
@@ -117,7 +117,7 @@ const updateProduct = async (req, res, next) => {
 // get all product  for user with pagination
 const getAllProducts = async (req, res, next) => {
   try {
-    const { page = 1, limit, search = '' } = req.body;
+    const { page = 1, limit } = req.body;
     const offset = (page - 1) * (limit ? parseInt(limit, 10) : 0);
     const options = {
       attributes: { exclude: ['CreatedAt', 'UpdatedAt'] },
@@ -127,16 +127,6 @@ const getAllProducts = async (req, res, next) => {
         ProductStatus: 'published', 
       },
     };
-
-    if (search) {
-      options.where = {
-        [Op.or]: [
-          
-          { ProductName: { [Op.like]: `%${search}%` } },
-          { Description: { [Op.like]: `%${search}%` } },
-        ],
-      };
-    }
 
     const { count, rows: products } = await Product.findAndCountAll(options);
 
@@ -154,6 +144,46 @@ const getAllProducts = async (req, res, next) => {
 
     return res.status(200).json({ products, totalPages, currentPage, totalRecords: count });
 
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// search products
+const searchProducts = async (req, res, next) => {
+  try {
+    const { page = 1, limit, search = '' } = req.body;
+    const offset = (page - 1) * (limit ? parseInt(limit, 10) : 0);
+
+    const options = {
+      attributes: { exclude: ['CreatedAt', 'UpdatedAt'] },
+      offset,
+      limit: limit ? parseInt(limit, 10) : null,
+      where: {
+        ProductStatus: 'published',
+        [Op.or]: [
+          { ProductName: { [Op.like]: `%${search}%` } },
+          { Description: { [Op.like]: `%${search}%` } },
+          { Price: { [Op.like]: `%${search}%` } },
+        ],
+      },
+    };
+
+    const { count, rows: products } = await Product.findAndCountAll(options);
+
+    for (const product of products) {
+      const productMedia = await ProductMedia.findAll({
+        where: { ProductID: product.ID },
+        attributes: ['ImagePath', 'Is_Main_Image'],
+      });
+
+      product.dataValues.ProductMedia = productMedia.length > 0 ? productMedia : null;
+    }
+
+    const totalPages = limit ? Math.ceil(count / parseInt(limit, 10)) : 1;
+    const currentPage = parseInt(page, 10);
+
+    return res.status(200).json({ products, totalPages, currentPage, totalRecords: count });
   } catch (error) {
     return next(error);
   }
@@ -262,33 +292,6 @@ const getProductReport = async (req, res, next) => {
 };
 
 
-//for user - review product 
-const reviewProduct = async (req, res, next) => {
-  try {
-    const { userID, productID, rating, review } = req.body;
-
-    const user = await User.findByPk(userID);
-    const product = await Product.findByPk(productID);
-
-    if (!user || !product) {
-      return res.status(404).json({ MESSAGE : messages.error.NOT_FOUND2});
-    }
-
-    // Create the product review
-    const productReview = await ProductReview.create({
-      UserID: userID,
-      ProductID: productID,
-      Rating: rating,
-      Review: review,
-    });
-
-    return res.status(201).json({ message : messages.success.PRODUCT_REVIEW_SUCCESS,review:productReview});
-  } catch (error) {
-    return next(error);
-  }
-}
-
-
 //for user- adding to wishlist
 const addToWishlist = async (req, res, next) => {
   try {
@@ -361,8 +364,8 @@ module.exports = {
   updateProduct,
   deleteProduct,
   getProductReport,
-  reviewProduct,
   addToWishlist,
-  removeFromWishlist
+  removeFromWishlist,
+  searchProducts
 
 };

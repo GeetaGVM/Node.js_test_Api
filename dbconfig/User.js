@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize =require('./db')
 const Cart = require('./Cart')
-const ProductReview = require('./ProductReview');
+
 const Order = require('./Order');
 
 
@@ -53,7 +53,7 @@ const User = sequelize.define('User', {
   },
   
   Role: {
-    type: DataTypes.STRING, // ENUM('superadmin' 'admin', 'distributor', 'dealer', 'consumer', 'staff')
+    type: DataTypes.STRING, 
     allowNull: false,
   },
   AccessToken: {
@@ -81,8 +81,7 @@ Order.belongsTo(User);
 User.hasMany(Cart, { foreignKey: 'UserID' });
 Cart.belongsTo(User);
 
-User.hasMany(ProductReview, { foreignKey: 'UserID' });
-ProductReview.belongsTo(User);
+
 
 
 module.exports = User;

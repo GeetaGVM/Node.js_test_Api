@@ -6,7 +6,6 @@ const messages = require('../utils/message');
 const CartItem = require('../dbconfig/Cartitem');
 const sequelize = require('../dbconfig/db'); 
 const { Op } = require('sequelize');
-const OrderReview = require('../dbconfig/OrderReview');
 const OrderItem = require('../dbconfig/OrderItem');
 
 //for user - place order
@@ -193,44 +192,44 @@ const getCustomerOrderReport = async (req, res, next) => {
 };
 
 
-//for user - review order 
-const  ReviewOrder = async (req, res,next) => {
-  try {
-    const { userID, orderID, rating, review } = req.body;
-    console.log("userid :",userID)
+// //for user - review order 
+// const  ReviewOrder = async (req, res,next) => {
+//   try {
+//     const { userID, orderID, rating, review } = req.body;
+//     console.log("userid :",userID)
 
-    const user = await User.findByPk(userID);
-    const order = await Order.findByPk(orderID);
+//     const user = await User.findByPk(userID);
+//     const order = await Order.findByPk(orderID);
 
-    if (!user || !order) {
-      return res.status(404).json({ message : messages.error.NOT_FOUND });
-    }
+//     if (!user || !order) {
+//       return res.status(404).json({ message : messages.error.NOT_FOUND });
+//     }
 
-    const userHasOrder = await Order.findOne({
-      where: {
-        UserID: userID,
-        ID: orderID,
-      },
-    });
+//     const userHasOrder = await Order.findOne({
+//       where: {
+//         UserID: userID,
+//         ID: orderID,
+//       },
+//     });
 
-    if (!userHasOrder) {
-      return res.status(400).json({ message: 'User does not have the specified order.' });
-    }
+//     if (!userHasOrder) {
+//       return res.status(400).json({ message: 'User does not have the specified order.' });
+//     }
 
-    // Create the order review
-    const orderReview = await OrderReview.create({
-      UserID : userID,
-      OrderID: orderID,
-      Rating: rating,
-      Review: review,
-    });
+//     // Create the order review
+//     const orderReview = await OrderReview.create({
+//       UserID : userID,
+//       OrderID: orderID,
+//       Rating: rating,
+//       Review: review,
+//     });
 
-    return res.status(201).json({ messaage : messages.success.ORDER_REVIEW_SUCCESS , review:orderReview });
-  } catch (error) {
-    return next(error)
-  }
-};
+//     return res.status(201).json({ messaage : messages.success.ORDER_REVIEW_SUCCESS , review:orderReview });
+//   } catch (error) {
+//     return next(error)
+//   }
+// };
 
   
   
-module.exports={placeOrder,getAllOrders,updateOrderStatus,getCustomerOrderReport,ReviewOrder};
+module.exports={placeOrder,getAllOrders,updateOrderStatus,getCustomerOrderReport};

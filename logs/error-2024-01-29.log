@@ -1,0 +1,160 @@
+2024-01-29T07:07:00.786Z [ERROR]: TypeError: Review.create is not a function, 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userID":"2","targetType":"Product","Rating":"5","Review":"its goood for kids","targetId":"2"}
+2024-01-29T07:08:39.590Z [ERROR]: SequelizeValidationError: notNull Violation: Review.UserID cannot be null, 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userID":"2","targetType":"Product","rating":"5","review":"its goood for kids","targetId":"2"}
+2024-01-29T07:09:26.673Z [ERROR]: SequelizeValidationError: notNull Violation: Review.UserID cannot be null, 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userID":"2","targetType":"Product","rating":"5","review":"its goood for kids","targetId":"2"}
+2024-01-29T07:10:03.443Z [ERROR]: ReferenceError: Image is not defined, 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"2","targetType":"Product","rating":"5","review":"its goood for kids","targetId":"2"}
+2024-01-29T07:10:30.408Z [ERROR]: Error: WHERE parameter "ReviewRatingId" has invalid "undefined" value, 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"2","targetType":"Product","rating":"5","review":"its goood for kids","targetId":"2"}
+2024-01-29T07:11:17.654Z [ERROR]: Error: WHERE parameter "ReviewRatingId" has invalid "undefined" value, 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"2","targetType":"Product","rating":"5","review":"its goood for kids","targetId":"2"}
+2024-01-29T07:40:49.598Z [ERROR]: SyntaxError: Expected double-quoted property name in JSON at position 48, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T07:42:00.471Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is not associated to Review!, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {"targetType":"Product","targetId":"2"}
+2024-01-29T07:42:37.611Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is not associated to Review!, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {"targetType":"Product","targetId":"2"}
+2024-01-29T07:43:24.894Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {"targetType":"Product","targetId":"2"}
+2024-01-29T07:47:14.402Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'dataValues'), 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T07:47:42.911Z [ERROR]: ReferenceError: sumRating is not defined, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T07:54:25.692Z [ERROR]: ReferenceError: reviews is not defined, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T09:16:31.777Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T09:17:58.082Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T09:18:16.521Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T09:19:14.642Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You must use the 'as' keyword to specify the alias within your include statement., 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T09:19:59.769Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You've included an alias (ReviewImage), but it does not match the alias(es) defined in your association (ReviewImages)., 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T09:21:07.229Z [ERROR]: SequelizeEagerLoadingError: ReviewImages is associated to Review using an alias. You've included an alias (Review), but it does not match the alias(es) defined in your association (ReviewImages)., 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T09:52:00.161Z [ERROR]: ReferenceError: Sequelize is not defined, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:05:29.441Z [ERROR]: ReferenceError: Sequelize is not defined, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:15:48.964Z [ERROR]: ReferenceError: Sequelize is not defined, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:40:05.869Z [ERROR]: SequelizeDatabaseError: Expression #11 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.ReviewImage.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:42:19.260Z [ERROR]: ReferenceError: Sequelize is not defined, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:42:41.287Z [ERROR]: SequelizeDatabaseError: Expression #11 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.ReviewImage.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:43:52.460Z [ERROR]: SequelizeDatabaseError: Column 'CreatedAt' in group statement is ambiguous, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:49:44.270Z [ERROR]: SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.Review.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:50:56.033Z [ERROR]: SequelizeDatabaseError: Expression #5 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.ReviewImage.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:52:05.671Z [ERROR]: SequelizeDatabaseError: Expression #6 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'loginauthentication.ReviewImage.ID' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, 
+Request: /getReviewList, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T10:56:47.360Z [ERROR]: Error: WHERE parameter "targetType" has invalid "undefined" value, 
+Request: /getReviewsbyid, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T10:57:48.774Z [ERROR]: Error: WHERE parameter "targetType" has invalid "undefined" value, 
+Request: /getReviewsbyid, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T10:58:59.073Z [ERROR]: Error: WHERE parameter "targetType" has invalid "undefined" value, 
+Request: /getReviewsbyid, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T10:59:29.728Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'not'), 
+Request: /getReviewsbyid, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T11:01:23.979Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'not'), 
+Request: /getReviewsbyid, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T11:02:18.675Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'Op'), 
+Request: /getReviewsbyid, 
+Request Params: {}, 
+Request Body: {"targetType":"Order","targetId":"2"}
+2024-01-29T11:13:12.155Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'fn'), 
+Request: /getAllReviews, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T11:14:56.831Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'fn'), 
+Request: /getAllReviews, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T11:15:34.337Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'fn'), 
+Request: /getAllReviews, 
+Request Params: {}, 
+Request Body: {}
+2024-01-29T11:31:14.447Z [ERROR]: ReferenceError: literal is not defined, 
+Request: /getReviewsbyid, 
+Request Params: {}, 
+Request Body: {"targetType":"Product","targetId":"2"}
+2024-01-29T12:21:35.095Z [ERROR]: SequelizeForeignKeyConstraintError: Cannot add or update a child row: a foreign key constraint fails (`loginauthentication`.`reviewimages`, CONSTRAINT `reviewimages_ibfk_1` FOREIGN KEY (`targetId`) REFERENCES `product` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE), 
+Request: /addReview, 
+Request Params: {}, 
+Request Body: {"userId":"4","targetType":"Order","rating":"3","review":"its goood for kids and adults   ","targetId":"8"}
