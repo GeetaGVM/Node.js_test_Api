@@ -14,6 +14,9 @@ const storage = multer.diskStorage({
     if (file.fieldname === "ReviewImage") {
       cb(null, path.join(__dirname, '..', process.env.REVIEW_IMAGES_PATH));
     }
+    if (file.fieldname === "SlideImage") {
+      cb(null, path.join(__dirname, '..', process.env.SLIDE_IMAGES_PATH));
+    }
 },
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -21,16 +24,17 @@ const storage = multer.diskStorage({
 });
 
 
-
 const uploadProductMedia = multer({ storage: storage,limits: {fileSize: 1024 * 1024 * 5,},}).fields([
     { name: 'Productimage', maxCount: 1 },
     { name: 'Extraimages', maxCount: 10 },
-    { name: 'Image', maxCount: 20 },
   ]);
 
-  const uploadReviewMedia = multer({ storage: storage,limits: {fileSize: 1024 * 1024 * 5,},}).fields([
+const uploadReviewMedia = multer({ storage: storage,limits: {fileSize: 1024 * 1024 * 5,},}).fields([
     { name: 'ReviewImage', maxCount: 20 },
   ]);
 
+  const uploadslideImage = multer({ storage: storage,limits: {fileSize: 1024 * 1024 * 5,},}).fields([
+    { name: 'SlideImage', maxCount: 20 },
+  ]);
   
-module.exports = {uploadProductMedia,uploadReviewMedia}
+module.exports = {uploadProductMedia,uploadReviewMedia,uploadslideImage}

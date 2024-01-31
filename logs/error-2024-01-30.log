@@ -18,3 +18,115 @@ Request Body: {"userId":"3","targetType":"Product","rating":"5","review":"its go
 Request: /addReview, 
 Request Params: {}, 
 Request Body: {"userId":"3","targetType":"Product","rating":"5","review":"its goood for kids and adults   ","targetId":"1"}
+2024-01-30T11:46:30.826Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:48:08.030Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:48:19.884Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:49:09.548Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:50:12.757Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:51:04.121Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:51:27.115Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:51:55.879Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:54:15.754Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:58:19.523Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:58:54.113Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T11:59:42.032Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:04:18.348Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:05:39.039Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:06:47.230Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:07:50.487Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:09:14.700Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:10:11.696Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:12:23.346Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:27:53.242Z [ERROR]: Error: Invalid SliderNameID. Please provide a valid SliderNameID with the name "SIZE UP YOUR ROOM"., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:28:14.740Z [ERROR]: ReferenceError: validateImageProperties is not defined, 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:29:06.115Z [ERROR]: ReferenceError: associatedSliderName is not defined, 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:29:57.832Z [ERROR]: ReferenceError: associatedSliderName is not defined, 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:30:23.307Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'length'), 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:30:56.875Z [ERROR]: TypeError: Cannot read properties of undefined (reading 'length'), 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:31:53.012Z [ERROR]: Error: You must upload exactly 5 images., 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:32:14.728Z [ERROR]: ReferenceError: sharp is not defined, 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}
+2024-01-30T12:33:47.832Z [ERROR]: TypeError: Cannot read properties of undefined (reading '0'), 
+Request: /add-slide, 
+Request Params: {}, 
+Request Body: {}

@@ -8,6 +8,7 @@ const sequelize = require('./dbconfig/db');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json'); 
 const orderRoutes = require('./routes/orderRoutes');
+const slideRoute = require('./routes/slideRoute');
 require('./dbconfig/db');
 const { dashLogger } = require("./utils/logger");
 
@@ -23,6 +24,7 @@ app.use('/', Routes);
 app.use('/',productRoutes);
 app.use('/', notificationRoutes);
 app.use('/',orderRoutes);
+app.use('/',slideRoute)
 
 
 // Handle undefined routes

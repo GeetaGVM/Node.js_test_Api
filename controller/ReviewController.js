@@ -37,7 +37,7 @@ const ReviewRating = async (req, res, next) => {
         Review:review,
         Rating:rating,
         targetType,
-        targetId,
+        TargetID:targetId,
       });
 
       const reviewImagePaths = [];
@@ -45,7 +45,7 @@ const ReviewRating = async (req, res, next) => {
         for (const image of reviewImages) {
           const reviewImage = await ReviewImages.create({
             path: image.path,
-            targetId
+            TargetID:targetId
           });
           reviewImagePaths.push(reviewImage.path);
         }
@@ -94,7 +94,7 @@ const getAllReviews = async (req, res, next) => {
 
 const getReviewsbyid = async (req, res, next) => {
     try {
-      const { targetType, targetId } = req.body; //targettype = Product/Order , targetid = ProductId / OrderId
+      const { targetType, targetId } = req.body; //targettype = Product/Order , targetid = ProductId / OrderId 
   
       const allReviews = await Review.findAll({
         include: [
@@ -106,7 +106,7 @@ const getReviewsbyid = async (req, res, next) => {
         ],
         where: {
           targetType,
-          targetId,
+          TargetID:targetId,
         },
       });
 
@@ -115,7 +115,7 @@ const getReviewsbyid = async (req, res, next) => {
         attributes: ['Rating'],
         where: {
           targetType,
-          targetId,
+          TargetID:targetId,
           Rating: { [Op.not]: null },
         },
         raw: true, 
