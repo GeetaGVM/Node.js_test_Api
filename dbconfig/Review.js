@@ -24,7 +24,7 @@ const Review = sequelize.define('Review', {
     type: DataTypes.ENUM('Product', 'Order'),
     allowNull: false,
   },
-  targetId: {
+  TargetID: {
     type: DataTypes.BIGINT.UNSIGNED,
     allowNull: false,
   },
@@ -56,17 +56,17 @@ const Review = sequelize.define('Review', {
 });
 
 
-Product.hasMany(Review, { foreignKey: 'targetId', constraints: false, scope: { targetType: 'Product' }, as: 'reviewsAndRatings' });
-Review.belongsTo(Product, { foreignKey: 'targetId', constraints: false, as: 'product' });
+Product.hasMany(Review, { foreignKey: 'TargetID', constraints: false, scope: { targetType: 'Product' }, as: 'reviewsAndRatings' });
+Review.belongsTo(Product, { foreignKey: 'TargetID', constraints: false, as: 'product' });
 
 
-Order.hasMany(Review, { foreignKey: 'targetId', constraints: false, scope: { targetType: 'Order' }, as: 'reviewsAndRatings' });
-Review.belongsTo(Order, { foreignKey: 'targetId', constraints: false, as: 'order' });
+Order.hasMany(Review, { foreignKey: 'TargetID', constraints: false, scope: { targetType: 'Order' }, as: 'reviewsAndRatings' });
+Review.belongsTo(Order, { foreignKey: 'TargetID', constraints: false, as: 'order' });
 
 ;
 
-Review.hasMany(ReviewImages, {foreignKey: 'targetId',as: 'ReviewImage'});
-ReviewImages.belongsTo(Review, { foreignKey: 'targetId',as: 'ReviewImage' });
+Review.hasMany(ReviewImages, {foreignKey: 'TargetID',as: 'ReviewImage'});
+ReviewImages.belongsTo(Review, { foreignKey: 'TargetID',as: 'ReviewImage' });
 
 
 module.exports = Review;

@@ -1,7 +1,6 @@
-// models/Image.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../dbconfig/db'); 
-const Review = require('./Review');
+const Review = require('./Review')
 
 const ReviewImages = sequelize.define('ReviewImages', {
     ID: {
@@ -14,11 +13,11 @@ const ReviewImages = sequelize.define('ReviewImages', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    targetId: {
+    TargetID: {
         type: DataTypes.BIGINT.UNSIGNED,
         allowNull: false,
         references: {
-            model: Review,
+            model: 'Review',
             key: 'ID',
           },
     },

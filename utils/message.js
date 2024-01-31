@@ -19,6 +19,7 @@ module.exports = {
         ORDER_REVIEW_SUCCESS : 'Order review and rating successfully added',
         ADD_WISHLIST:'Product added to wishlist successfully.',
         REMOVE_WISHLIST : 'Product removed from wishlist successfully.',
+        SETTING_ADDED : 'Image setting added successfully',
 
 
     },
@@ -51,6 +52,8 @@ module.exports = {
         NOT_FOUND:'User or order not found',
         NOT_FOUND2 : 'User or product not found' ,
         ALREADY_WISHLIST:'Product is already in the wishlist.',
+        SETTING_NOT_FOUND :'Image settings not found for the specified SliderNameID and order.',
+        INVALID_SLIDERNAMEID: 'Invalid SliderNameID. Please provide a valid SliderNameID.',
     
 
     }
