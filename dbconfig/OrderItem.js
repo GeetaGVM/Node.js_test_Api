@@ -42,7 +42,10 @@ const OrderItem = sequelize.define('OrderItem', {
   TotalAmount: {
     type: DataTypes.FLOAT,
     allowNull: false,
-  },
+  }
+}, {
+  tableName: 'OrderItem',
+  timestamps: false
 });
 
 

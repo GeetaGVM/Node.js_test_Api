@@ -27,7 +27,8 @@ const SlideImage = sequelize.define('SlideImage', {
       allowNull: false
   }
 }, {
-  tableName: 'SlideImage'
+  tableName: 'SlideImage',
+  timestamps: false
 });
 
 Slide.hasMany(SlideImage, { foreignKey: 'SliderID', onDelete: 'CASCADE' });
