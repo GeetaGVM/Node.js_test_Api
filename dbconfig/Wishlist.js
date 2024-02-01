@@ -27,6 +27,16 @@ const Wishlist = sequelize.define('Wishlist', {
         key: 'ID',
       },
     },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    UpdatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    }
   }, {
     tableName: 'Wishlist',
     timestamps: false

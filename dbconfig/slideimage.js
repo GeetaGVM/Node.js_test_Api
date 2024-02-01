@@ -25,6 +25,16 @@ const SlideImage = sequelize.define('SlideImage', {
     ImageOrder: {
       type: DataTypes.INTEGER,
       allowNull: false
+  },
+  CreatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW
+  },
+  UpdatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW
   }
 }, {
   tableName: 'SlideImage',

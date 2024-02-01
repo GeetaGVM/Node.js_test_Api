@@ -21,6 +21,16 @@ const SliderName = sequelize.define('SliderName', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false, 
+    },
+    CreatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
+    },
+    UpdatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
     }
 }, {
     tableName: 'SliderName',

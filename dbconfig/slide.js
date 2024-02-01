@@ -32,6 +32,16 @@ const Slide = sequelize.define('Slide', {
     order: {
         type: DataTypes.INTEGER,
         allowNull: false,
+    },
+    CreatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
+    },
+    UpdatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
     }
 }, {
   tableName: 'Slide',
