@@ -32,6 +32,7 @@ const Slide = sequelize.define('Slide', {
     order: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
     },
     CreatedAt: {
         type: DataTypes.DATE,
