@@ -14,7 +14,7 @@ const ImageSetting = sequelize.define('ImageSetting', {
         type: DataTypes.BIGINT.UNSIGNED,
         allowNull: false,
         references: {
-            model: 'SliderName',
+            model: SliderName,
             key: 'ID'
         }
     },
@@ -50,10 +50,10 @@ const ImageSetting = sequelize.define('ImageSetting', {
 });
 
 SliderName.hasMany(ImageSetting,{ foreignKey: 'SliderNameID'})
-ImageSetting.belongsTo(SliderName, { foreignKey: 'SliderNameID'});
+ImageSetting.belongsTo(SliderName);
 
 Slide.hasMany(ImageSetting, { foreignKey: 'order', onDelete: 'CASCADE', sourceKey: 'order' });
-ImageSetting.belongsTo(Slide, { foreignKey: 'order', targetKey: 'order' });
+ImageSetting.belongsTo(Slide);
 
 
 module.exports = ImageSetting;

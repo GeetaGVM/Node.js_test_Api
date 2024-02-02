@@ -13,7 +13,7 @@ const Slide = sequelize.define('Slide', {
         type: DataTypes.BIGINT.UNSIGNED,
         allowNull: false,
         references: {
-            model: 'SliderName',
+            model: SliderName,
             key: 'ID'
         }
     },

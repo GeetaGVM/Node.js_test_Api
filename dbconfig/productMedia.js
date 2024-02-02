@@ -7,7 +7,7 @@ const ProductMedia = sequelize.define('ProductMedia', {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       references: {
-        model: 'Product',
+        model: Product,
         key: 'ID'
       }
     },

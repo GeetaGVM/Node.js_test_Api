@@ -9,6 +9,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json'); 
 const orderRoutes = require('./routes/orderRoutes');
 const slideRoute = require('./routes/slideRoute');
+const subscriptionRoutes = require('./routes/subscriptionRoutes');
 require('./dbconfig/db');
 const { dashLogger } = require("./utils/logger");
 
@@ -25,6 +26,7 @@ app.use('/',productRoutes);
 app.use('/', notificationRoutes);
 app.use('/',orderRoutes);
 app.use('/',slideRoute)
+app.use('/',subscriptionRoutes)
 
 
 // Handle undefined routes

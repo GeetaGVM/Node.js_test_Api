@@ -20,6 +20,10 @@ module.exports = {
         ADD_WISHLIST:'Product added to wishlist successfully.',
         REMOVE_WISHLIST : 'Product removed from wishlist successfully.',
         SETTING_ADDED : 'Image setting added successfully',
+        SUBSCRIPTION_SUCCESS:'Subscription purchased successfully.',
+        UNSUBSCRIBE : 'User unsubscribed from the subscription plan successfully',
+        SUBSCRIPTION_DELETED:'User subscription deleted successfully.',
+
 
 
     },
@@ -54,7 +58,7 @@ module.exports = {
         ALREADY_WISHLIST:'Product is already in the wishlist.',
         SETTING_NOT_FOUND :'Image settings not found for the specified SliderNameID and order.',
         INVALID_SLIDERNAMEID: 'Invalid SliderNameID. Please provide a valid SliderNameID.',
-    
+
 
     }
 };

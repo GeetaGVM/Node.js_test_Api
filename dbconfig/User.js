@@ -3,6 +3,7 @@ const sequelize =require('./db')
 const Cart = require('./Cart')
 
 const Order = require('./Order');
+const UserSubscription = require('./UserSubscription');
 
 
 const User = sequelize.define('User', {
@@ -81,6 +82,9 @@ Order.belongsTo(User);
 User.hasMany(Cart, { foreignKey: 'UserID' });
 Cart.belongsTo(User);
 
+
+User.hasMany(UserSubscription, { foreignKey: 'UserID' });
+UserSubscription.belongsTo(User);
 
 
 

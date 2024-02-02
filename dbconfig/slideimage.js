@@ -14,7 +14,7 @@ const SlideImage = sequelize.define('SlideImage', {
         type: DataTypes.BIGINT.UNSIGNED,
         allowNull: false,
         references: {
-          model: 'Slide',
+          model: Slide,
           key: 'ID'
         }
     },
@@ -25,24 +25,24 @@ const SlideImage = sequelize.define('SlideImage', {
     ImageOrder: {
       type: DataTypes.INTEGER,
       allowNull: false
-  },
-  CreatedAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
-  },
-  UpdatedAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
-  }
+    },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    UpdatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    }
 }, {
   tableName: 'SlideImage',
   timestamps: false
 });
 
 Slide.hasMany(SlideImage, { foreignKey: 'SliderID', onDelete: 'CASCADE' });
-SlideImage.belongsTo(Slide, { foreignKey: 'SliderID' });
+SlideImage.belongsTo(Slide);
 
 
 module.exports = SlideImage;

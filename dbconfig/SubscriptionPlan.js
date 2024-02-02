@@ -1,25 +1,21 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../dbconfig/db'); 
-const Review = require('./Review')
+const sequelize = require('./db');
 
-const ReviewImages = sequelize.define('ReviewImages', {
+
+const SubscriptionPlan = sequelize.define('SubscriptionPlan', {
     ID: {
         type: DataTypes.BIGINT.UNSIGNED,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
-      },
-    path: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    }, 
+    Name: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    TargetID: {
-        type: DataTypes.BIGINT.UNSIGNED,
-        allowNull: false,
-        references: {
-            model: Review,
-            key: 'ID',
-          },
+    Price: {
+      type: DataTypes.STRING, 
+      allowNull: false,
     },
     CreatedAt: {
         type: DataTypes.DATE,
@@ -32,9 +28,10 @@ const ReviewImages = sequelize.define('ReviewImages', {
         defaultValue: DataTypes.NOW
     }
 }, {
-    tableName: 'ReviewImages',
+    tableName: 'SubscriptionPlan',
     timestamps: false
 });
-  
 
-module.exports = ReviewImages;
+
+
+module.exports = SubscriptionPlan;
