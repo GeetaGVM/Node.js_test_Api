@@ -3,3 +3,11 @@ node_modules/
 
 # Logs
 logs/
+
+# Yarn lock files and logs (if applicable)
+yarn.lock
+yarn-debug.log*
+yarn-error.log*
+
+# Optional: Ignore `package-lock.json` (if you're using npm)
+package-lock.json
