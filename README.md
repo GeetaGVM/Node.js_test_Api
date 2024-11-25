@@ -173,8 +173,3 @@ To generate a QR code from text, send a POST request to the `/generate-qrcode` e
     `"message": "PDF generated successfully.",`  
     `"filePath": "/Users/username/Downloads/generated-pdf.pdf"`  
   `}`  
-  
-
-
-  
-
